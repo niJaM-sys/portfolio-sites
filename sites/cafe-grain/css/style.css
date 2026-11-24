@@ -843,8 +843,20 @@ html:not(.has-motion) .avis__rows { overflow-x: auto; }
   padding-block: 1.5rem;
   border-top: 1px solid rgba(243, 235, 221, .15);
   font-size: .8rem;
-  opacity: .7;
+  color: rgba(243, 235, 221, .72);
 }
+/* Crédit : discret (petit, même ligne que le copyright) mais lisible, avec le nom souligné en sauge */
+.footer__credit { color: rgba(243, 235, 221, .9); }
+.footer__credit a {
+  color: var(--creme);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--sauge);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  transition: text-decoration-color .3s;
+}
+.footer__credit a:hover { text-decoration-color: var(--creme); }
 
 /* ---------- 15. Barre d'actions mobile ---------- */
 .mobile-bar {

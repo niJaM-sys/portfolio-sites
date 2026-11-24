@@ -68,12 +68,21 @@ Les originaux sont dans `assets/brut/` (ne pas mettre en ligne : 31 Mo). Les ver
 
 Pour changer une photo : remplace le fichier dans `assets/img/` en gardant le même nom et les mêmes proportions.
 
-## À remplacer avant de publier
-- Le nom de domaine `cafe-grain.fr` (balises canonical, Open Graph, JSON-LD)
-- Ton nom dans le footer, et le lien Instagram
-- Les champs `[À COMPLÉTER]` de `mentions-legales.html`
+## Mise en ligne (Netlify)
+Adresse prévue : **https://grain-cafe-lyon.netlify.app** (utilisée dans les balises canonical, Open Graph et JSON-LD). Si tu choisis un autre nom sur Netlify, remplace-la partout dans `index.html`.
+
+- **Depuis GitHub (recommandé)** : Netlify → *Add new site → Import an existing project → GitHub* → dépôt `portfolio-sites` → *Base directory* : `sites/cafe-grain`. `netlify.toml` gère le reste. Chaque `git push` met le site à jour.
+- **Glisser-déposer** : `powershell -ExecutionPolicy Bypass -File .\outils\preparer-netlify.ps1 cafe-grain`, puis glisser `_deploy/cafe-grain` sur https://app.netlify.com/drop.
+
+`_headers` ajoute des en-têtes de sécurité, quelle que soit la méthode.
+
+## Particularités du site d'exemple
+- `<meta name="robots" content="noindex">` : Google n'indexe pas ce café fictif. **À retirer sur un vrai site client.**
+- E-mail en `@cafe-grain.example` : domaine réservé, il ne peut appartenir à personne.
+- Mentions légales complètes. Une fois immatriculé, ajouter le statut et le SIRET (emplacement commenté dans `mentions-legales.html`).
 
 ## État
 - [x] Structure, contenu et animations
 - [x] Vraies photos (recadrées et converties en WebP)
-- [ ] Mise en ligne (Netlify / Vercel / GitHub Pages)
+- [x] Préparé pour Netlify (crédit portfolio, noindex, config)
+- [ ] Mise en ligne sur Netlify

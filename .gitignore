@@ -5,3 +5,6 @@ sites/*/assets/brut/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Dossiers de déploiement générés par outils/preparer-netlify.ps1
+_deploy/

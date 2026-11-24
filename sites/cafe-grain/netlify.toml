@@ -1,0 +1,7 @@
+# Configuration Netlify pour un déploiement depuis GitHub.
+# Dans Netlify, indique seulement « Base directory » = sites/cafe-grain :
+# Netlify lit alors ce fichier.
+
+[build]
+  # Pas d'étape de build : le site est publié tel quel (HTML/CSS/JS statiques).
+  publish = "."

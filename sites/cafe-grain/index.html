@@ -8,17 +8,22 @@
   <title>Grain — Café de spécialité & torréfacteur à Lyon 1er</title>
   <meta name="description" content="Café de spécialité torréfié sur place à Lyon 1er : espresso, filtre, cold brew et pâtisseries maison. Ouvert du mardi au dimanche, 14 rue Royale.">
   <meta name="theme-color" content="#2B1D14">
-  <!-- À mettre à jour avec le vrai nom de domaine une fois en ligne -->
-  <link rel="canonical" href="https://cafe-grain.fr/">
+
+  <!-- Site d'EXEMPLE : on demande à Google de ne pas l'indexer, pour que personne
+       ne cherche ce café fictif au 14 rue Royale. Sur un vrai site client : supprimer cette ligne. -->
+  <meta name="robots" content="noindex, follow">
+
+  <!-- Adresse du site sur Netlify (à changer si tu choisis un autre nom ou un nom de domaine) -->
+  <link rel="canonical" href="https://grain-cafe-lyon.netlify.app/">
 
   <!-- Open Graph (aperçu quand on partage le lien) -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:title" content="Grain — Café de spécialité & torréfacteur à Lyon">
   <meta property="og:description" content="Torréfié lentement, à Lyon. Espresso, filtre et pâtisseries maison, 14 rue Royale.">
-  <meta property="og:url" content="https://cafe-grain.fr/">
+  <meta property="og:url" content="https://grain-cafe-lyon.netlify.app/">
   <!-- PHOTO MANQUANTE : og-image.jpg (1200×630). Les réseaux sociaux exigent une URL absolue. -->
-  <meta property="og:image" content="https://cafe-grain.fr/assets/img/og-image.jpg">
+  <meta property="og:image" content="https://grain-cafe-lyon.netlify.app/assets/img/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -46,13 +51,13 @@
     "@type": "CafeOrCoffeeShop",
     "name": "Grain",
     "description": "Café de spécialité et torréfacteur à Lyon 1er.",
-    "url": "https://cafe-grain.fr/",
-    "image": "https://cafe-grain.fr/assets/img/og-image.jpg",
+    "url": "https://grain-cafe-lyon.netlify.app/",
+    "image": "https://grain-cafe-lyon.netlify.app/assets/img/og-image.jpg",
     "telephone": "+33465712345",
-    "email": "bonjour@cafe-grain.fr",
+    "email": "bonjour@cafe-grain.example",
     "priceRange": "€",
     "servesCuisine": ["Café de spécialité", "Pâtisseries"],
-    "hasMenu": "https://cafe-grain.fr/#carte",
+    "hasMenu": "https://grain-cafe-lyon.netlify.app/#carte",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "14 rue Royale",
@@ -498,7 +503,7 @@
             <a class="btn btn--light" href="tel:+33465712345">Appeler le 04 65 71 23 45</a>
             <a class="btn btn--ghost-light" href="https://www.google.com/maps/search/?api=1&amp;query=14+rue+Royale+69001+Lyon" target="_blank" rel="noopener">Itinéraire Google Maps</a>
           </div>
-          <p class="infos__mail"><a href="mailto:bonjour@cafe-grain.fr">bonjour@cafe-grain.fr</a></p>
+          <p class="infos__mail"><a href="mailto:bonjour@cafe-grain.example">bonjour@cafe-grain.example</a></p>
         </div>
 
         <div class="infos__hours">
@@ -553,9 +558,7 @@
       <p class="footer__tagline">Café de spécialité<br>&amp; torréfacteur, <em>à Lyon.</em></p>
       <ul class="footer__links">
         <li><a href="tel:+33465712345">04 65 71 23 45</a></li>
-        <li><a href="mailto:bonjour@cafe-grain.fr">bonjour@cafe-grain.fr</a></li>
-        <!-- Remplacer # par le vrai lien Instagram -->
-        <li><a href="#" rel="noopener">Instagram</a></li>
+        <li><a href="mailto:bonjour@cafe-grain.example">bonjour@cafe-grain.example</a></li>
       </ul>
       <ul class="footer__links">
         <li><a href="mentions-legales.html">Mentions légales</a></li>
@@ -566,9 +569,13 @@
     <p class="footer__giant" aria-hidden="true"><span>G</span><span>r</span><span>a</span><span>i</span><span>n</span></p>
 
     <div class="container footer__bottom">
-      <p>© 2026 Grain · Commerce fictif, site de démonstration.</p>
-      <!-- ✏️ Remplace par ton nom / ton lien portfolio -->
-      <p>Conception &amp; développement : <a href="#">Ton nom</a></p>
+      <!-- Crédit portfolio : indique clairement que le commerce est fictif -->
+      <p class="footer__credit">
+        Site d’exemple — Grain est un café fictif. Conçu par
+        <a href="https://www.instagram.com/ulysse_studiooff/" target="_blank" rel="noopener"
+           aria-label="Ulysse DELOURME sur Instagram (nouvel onglet)">Ulysse DELOURME</a>
+      </p>
+      <p>© 2026</p>
     </div>
   </footer>
 
