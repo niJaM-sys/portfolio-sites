@@ -72,6 +72,7 @@ Adresse prévue : **https://ciseaux-et-cie-lyon.netlify.app** (utilisée dans le
 - **Glisser-déposer** : `powershell -ExecutionPolicy Bypass -File .\outils\preparer-netlify.ps1 atelier-ciseaux`, puis glisser `_deploy/atelier-ciseaux` sur https://app.netlify.com/drop.
 
 ## Particularités du site d'exemple
+- Netlify (offre gratuite) ajoute à chaque page un badge en bas à droite, un commentaire HTML et des URL sans `.html`. La variable CSS `--badge-space` (64 px) remonte la barre « Réserver » mobile et le bas du footer pour que le badge ne recouvre rien.
 - `<meta name="robots" content="noindex">` : Google n'indexe pas ce salon fictif. **À retirer sur un vrai site client.**
 - Téléphone en `04 65 71 …` : tranche réservée par l'ARCEP aux œuvres de fiction. E-mail en `@ciseaux-et-cie.example` (domaine réservé).
 - Réservation : sur un vrai site, on la remplace par l'outil du salon (Planity, Calendly…), le plus souvent un simple lien ou un widget.
@@ -79,4 +80,4 @@ Adresse prévue : **https://ciseaux-et-cie-lyon.netlify.app** (utilisée dans le
 ## État
 - [x] Structure, contenu, animations, réservation démo
 - [x] Vraies photos (recadrées et converties en WebP)
-- [ ] Mise en ligne sur Netlify
+- [x] Mise en ligne sur Netlify : https://ciseaux-et-cie-lyon.netlify.app
