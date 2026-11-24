@@ -24,7 +24,7 @@ Objectif : **faire réserver**. Le bouton « Réserver » reste toujours visible
 2. Bandeau défilant
 3. Prestations : onglets Femme · Homme · Barbe · Couleur · Enfants, avec un bouton « + » par ligne qui ouvre la réservation sur la bonne prestation
 4. Équipe : 3 cartes, avec un bouton « Réserver avec… » qui présélectionne le coiffeur
-5. Réalisations : comparateur à glisser (souris, doigt, flèches du clavier)
+5. Réalisations : 3 paires avant / après dans un comparateur à glisser (souris, doigt, flèches du clavier), onglets avec miniatures
 6. Avis : bulles de BD, qu'on fait défiler d'un geste sur mobile
 7. Infos : adresse, téléphone, horaires (jour en cours surligné), carte chargée au clic
 8. Footer : crédit portfolio, Instagram, mentions légales
@@ -36,27 +36,27 @@ Aucune librairie : les apparitions au scroll utilisent `IntersectionObserver` et
 ## Modifier le contenu
 - **Prix, durées, prestations** : les `<li class="service">` dans `index.html`. Le formulaire de réservation les lit tout seul.
 - **Horaires** : le tableau `data-hours` (attributs `data-open` / `data-close`), plus le JSON-LD dans le `<head>`. Le badge « Ouvert / Fermé » et les créneaux se calculent à partir de ce tableau.
-- **Réalisations** : pour chaque `<figure class="compare">`, modifie les libellés des deux `<span class="compare__tag">` (« Avant » ou « Pendant », puis « Après »), le nom de l'onglet et la légende. Les textes d'accessibilité suivent automatiquement.
+- **Réalisations** (3 paires) : pour chaque `<figure class="compare">`, les libellés des deux `<span class="compare__tag">` (« Avant » / « Après »), les textes `alt` et la légende ; dans les onglets, le nom et la miniature. Les textes d'accessibilité du curseur suivent automatiquement.
 - **Équipe** : les cartes `.member`. Si tu changes un prénom, mets aussi à jour la fenêtre de réservation (étape 2) et `data-book-stylist`.
 
-## Photos à fournir
-Dépose-les dans `assets/img/` **avec exactement ces noms**. Tant qu'un fichier manque, le site affiche à sa place des rayures avec le nom attendu. Originaux dans `assets/brut/` (non versionnés), versions du site en WebP qualité 75–80.
+## Photos
+Originaux dans `assets/brut/` (non versionnés, à ne pas mettre en ligne). Versions du site dans `assets/img/`, en WebP qualité 80, générées avec **ffmpeg** (installé via winget). Si une photo manque, le site affiche à sa place des rayures avec le nom du fichier attendu.
 
-| Fichier | Format | Sujet |
-|---|---|---|
-| `hero-salon.webp` | 1000×1250 (4:5) | Coiffeur·se en action, client·e qui sourit, salon lumineux |
-| `hero-barbe.webp` | 600×600 (carré) | Gros plan barbe / rasage, serviette ou blaireau |
-| `equipe-ines.webp` | 800×1000 (4:5) | Portrait coloriste, souriante |
-| `equipe-malik.webp` | 800×1000 (4:5) | Portrait barbier |
-| `equipe-jo.webp` | 800×1000 (4:5) | Portrait coiffeur·se, ciseaux à la main |
-| `realisation-1-debut.webp` / `-fin.webp` | 900×1125 (4:5) | Balayage : avant / après |
-| `realisation-2-debut.webp` / `-fin.webp` | 900×1125 (4:5) | Dégradé : pendant / après |
-| `realisation-3-debut.webp` / `-fin.webp` | 900×1125 (4:5) | Carré court : avant / après |
-| `realisation-4-debut.webp` / `-fin.webp` | 900×1125 (4:5) | Barbe : pendant / après |
-| `infos-salon.webp` | 1200×900 (4:3) | Devanture ou intérieur du salon |
-| `og-image.jpg` | 1200×630 | Aperçu réseaux sociaux (peut être tiré du hero) |
+| Fichier du site | Taille | Original | Recadrage |
+|---|---|---|---|
+| `hero-salon.webp` | 1000×1250 | `hero-salon.jpg` | Sur le miroir et le sourire ; l'affiche avec un visage (en haut) est hors cadre |
+| `hero-barbe.webp` | 600×600 | `hero barbe.jpg` | Carré sur la tête et la barbe ; le logo de la cape est hors cadre |
+| `equipe-ines.webp` / `-malik` / `-jo` | 800×1000 | `equipe-*.webp` | 4:5 centré ; sur mobile, le cadre carré garde le visage (`object-position`) |
+| `realisation-1-debut.webp` / `-fin.webp` | 900×1125 | `realisation1-*.webp` | Balayage châtain foncé → caramel |
+| `realisation-2-debut.webp` / `-fin.webp` | 900×1125 | `realisation2-*.webp` | Cheveux longs → dégradé + barbe |
+| `realisation-3-debut.webp` / `-fin.webp` | 900×1125 | `realisation3-*.webp` | Cheveux longs → carré court |
+| `realisation-1/2/3-mini.webp` | 120×120 | photo « après » de chaque paire | Miniature ronde des onglets |
+| `infos-salon.webp` | 1200×900 | `infos-salon.webp` (image générée, 1200×896) | Rognée de 3 px de chaque côté pour un 4:3 exact |
+| `og-image.jpg` | 1200×630 | `hero-salon.jpg` | Bande horizontale autour du sourire |
 
-Pour le comparateur, les deux photos d'une paire doivent avoir **le même cadrage** (même personne, même angle) : recadre-les ensemble.
+**Paires avant / après** : les deux photos d'une paire sont recadrées exactement de la même façon. Leur alignement a été mesuré sur le décor (haut et côtés de l'image) : décalage de 0 px pour les trois paires. Pour en ajouter une, garde ce principe : même séance, même cadrage, même recadrage.
+
+Pour changer une photo : remplace le fichier dans `assets/img/` en gardant le même nom et les mêmes proportions.
 
 ## Prévisualiser
 Lance un petit serveur local depuis le dossier `Sites` :
@@ -78,5 +78,5 @@ Adresse prévue : **https://ciseaux-et-cie-lyon.netlify.app** (utilisée dans le
 
 ## État
 - [x] Structure, contenu, animations, réservation démo
-- [ ] Vraies photos
+- [x] Vraies photos (recadrées et converties en WebP)
 - [ ] Mise en ligne sur Netlify

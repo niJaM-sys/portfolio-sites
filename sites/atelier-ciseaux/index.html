@@ -22,7 +22,7 @@
   <meta property="og:title" content="Ciseaux &amp; Cie — Coiffeur &amp; barbier à la Croix-Rousse">
   <meta property="og:description" content="Ça coupe, ça rase, ça repart heureux. Salon mixte et barbier, Lyon 4e.">
   <meta property="og:url" content="https://ciseaux-et-cie-lyon.netlify.app/">
-  <!-- PHOTO MANQUANTE : og-image.jpg (1200×630). Les réseaux sociaux exigent une URL absolue. -->
+  <!-- Aperçu : og-image.jpg (1200×630, tiré du hero). Les réseaux sociaux exigent une URL absolue. -->
   <meta property="og:image" content="https://ciseaux-et-cie-lyon.netlify.app/assets/img/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
@@ -202,16 +202,14 @@
         </div>
 
         <div class="hero__visual">
-          <!-- PHOTO MANQUANTE : hero-salon.webp (1000×1250, portrait 4:5) -->
           <figure class="hero__photo pop" style="--d: .35s">
             <img src="assets/img/hero-salon.webp" width="1000" height="1250" fetchpriority="high"
-                 alt="Une coiffeuse coupe les cheveux d’une cliente qui rit, dans le salon lumineux Ciseaux & Cie">
+                 alt="Dans le miroir du salon, une cliente en cape rouge sourit pendant qu’on la coiffe">
           </figure>
 
-          <!-- PHOTO MANQUANTE : hero-barbe.webp (600×600, carré) -->
           <figure class="hero__photo-mini pop" style="--d: .6s">
             <img src="assets/img/hero-barbe.webp" width="600" height="600"
-                 alt="Gros plan d’une barbe taillée au rasoir">
+                 alt="Un client à la barbe rousse taillée se fait coiffer à la brosse ronde">
           </figure>
 
           <!-- Le poteau de barbier : la signature visuelle du salon -->
@@ -458,9 +456,8 @@
         <ul class="team">
           <li class="member member--bleu reveal" style="--d: 0s">
             <div class="member__photo">
-              <!-- PHOTO MANQUANTE : equipe-ines.webp (800×1000, portrait 4:5) -->
               <img src="assets/img/equipe-ines.webp" width="800" height="1000" loading="lazy"
-                   alt="Portrait d’Inès, coloriste, souriante, cheveux blonds ondulés">
+                   alt="Portrait d’Inès, coloriste, souriante, un pinceau à coloration à la main">
             </div>
             <span class="member__sticker" aria-hidden="true">Reine du blond</span>
             <h3 class="member__name">Inès</h3>
@@ -473,9 +470,8 @@
 
           <li class="member member--vermillon reveal" style="--d: .1s">
             <div class="member__photo">
-              <!-- PHOTO MANQUANTE : equipe-malik.webp (800×1000, portrait 4:5) -->
               <img src="assets/img/equipe-malik.webp" width="800" height="1000" loading="lazy"
-                   alt="Portrait de Malik, barbier, barbe soignée et tablier de cuir">
+                   alt="Portrait de Malik, barbier, en tablier, une tondeuse à la main">
             </div>
             <span class="member__sticker" aria-hidden="true">Roi du dégradé</span>
             <h3 class="member__name">Malik</h3>
@@ -488,9 +484,8 @@
 
           <li class="member member--creme reveal" style="--d: .2s">
             <div class="member__photo">
-              <!-- PHOTO MANQUANTE : equipe-jo.webp (800×1000, portrait 4:5) -->
               <img src="assets/img/equipe-jo.webp" width="800" height="1000" loading="lazy"
-                   alt="Portrait de Jo, coiffeur·se, en train de rire, ciseaux à la main">
+                   alt="Portrait de Jo, qui éclate de rire, une paire de ciseaux à la main">
             </div>
             <span class="member__sticker" aria-hidden="true">Patience infinie</span>
             <h3 class="member__name">Jo</h3>
@@ -507,11 +502,13 @@
     <!-- =================================================================
          4. RÉALISATIONS (comparateur à glisser)
          ✏️ Pour chaque réalisation :
-            - les deux photos : realisation-N-debut.webp (avant OU pendant)
-              et realisation-N-fin.webp (après), même cadrage si possible ;
-            - les libellés : modifie le texte des deux <span class="compare__tag">
-              (« Avant » ou « Pendant », et « Après ») : l'accessibilité suit toute seule ;
-            - le nom de l'onglet et la légende.
+            - les deux photos : realisation-N-debut.webp (avant) et
+              realisation-N-fin.webp (après), au cadrage IDENTIQUE
+              (sinon le décor « saute » quand on fait glisser la poignée) ;
+            - la miniature de l'onglet : realisation-N-mini.webp (120×120) ;
+            - les libellés « Avant » / « Après » (<span class="compare__tag">) :
+              l'accessibilité suit toute seule ;
+            - le nom de l'onglet, les textes alternatifs (alt) et la légende.
          ================================================================= -->
     <section class="section realisations" id="realisations" aria-labelledby="realisations-title">
       <div class="container realisations__grid">
@@ -523,82 +520,69 @@
 
         <div class="gallery" data-tabs>
           <div class="gallery__tabs reveal" role="tablist" aria-label="Choisir une réalisation">
-            <button class="tab tab--small" role="tab" id="tab-real-1" aria-controls="real-1" aria-selected="true">Balayage</button>
-            <button class="tab tab--small" role="tab" id="tab-real-2" aria-controls="real-2" aria-selected="false" tabindex="-1">Dégradé</button>
-            <button class="tab tab--small" role="tab" id="tab-real-3" aria-controls="real-3" aria-selected="false" tabindex="-1">Carré court</button>
-            <button class="tab tab--small" role="tab" id="tab-real-4" aria-controls="real-4" aria-selected="false" tabindex="-1">Barbe</button>
+            <button class="tab gallery__tab" role="tab" id="tab-real-1" aria-controls="real-1" aria-selected="true">
+              <img class="gallery__thumb" src="assets/img/realisation-1-mini.webp" width="120" height="120" alt="">
+              <span>Balayage</span>
+            </button>
+            <button class="tab gallery__tab" role="tab" id="tab-real-2" aria-controls="real-2" aria-selected="false" tabindex="-1">
+              <img class="gallery__thumb" src="assets/img/realisation-2-mini.webp" width="120" height="120" alt="">
+              <span>Dégradé</span>
+            </button>
+            <button class="tab gallery__tab" role="tab" id="tab-real-3" aria-controls="real-3" aria-selected="false" tabindex="-1">
+              <img class="gallery__thumb" src="assets/img/realisation-3-mini.webp" width="120" height="120" alt="">
+              <span>Carré court</span>
+            </button>
           </div>
 
           <!-- Réalisation 1 -->
           <figure class="compare reveal" role="tabpanel" id="real-1" aria-labelledby="tab-real-1" data-compare>
             <div class="compare__frame">
-              <!-- PHOTOS MANQUANTES : realisation-1-fin.webp et realisation-1-debut.webp (900×1125, 4:5) -->
               <img class="compare__img" src="assets/img/realisation-1-fin.webp" width="900" height="1125" loading="lazy"
-                   alt="Après : balayage miel lumineux sur cheveux mi-longs">
+                   alt="Après : balayage caramel lumineux sur les mêmes cheveux longs ondulés">
               <div class="compare__debut">
                 <img class="compare__img" src="assets/img/realisation-1-debut.webp" width="900" height="1125" loading="lazy"
-                     alt="Avant : cheveux châtains mi-longs, sans reflets">
+                     alt="Avant : cheveux longs châtain foncé, ondulés, vus de dos">
               </div>
               <span class="compare__tag compare__tag--debut">Avant</span>
               <span class="compare__tag compare__tag--fin">Après</span>
               <input class="compare__range" type="range" min="0" max="100" value="50">
               <div class="compare__handle" aria-hidden="true"><span class="compare__knob"></span></div>
             </div>
-            <figcaption class="compare__caption"><strong>Balayage miel</strong> · 2 h 30 · par Inès</figcaption>
+            <figcaption class="compare__caption"><strong>Balayage caramel</strong> · 2 h 30 · par Inès</figcaption>
           </figure>
 
-          <!-- Réalisation 2 (exemple de paire « pendant / après ») -->
+          <!-- Réalisation 2 -->
           <figure class="compare" role="tabpanel" id="real-2" aria-labelledby="tab-real-2" data-compare>
             <div class="compare__frame">
-              <!-- PHOTOS MANQUANTES : realisation-2-fin.webp et realisation-2-debut.webp (900×1125, 4:5) -->
               <img class="compare__img" src="assets/img/realisation-2-fin.webp" width="900" height="1125" loading="lazy"
-                   alt="Après : dégradé à blanc net, dessus texturé">
+                   alt="Après : dégradé à blanc sur les côtés, dessus texturé et barbe taillée courte">
               <div class="compare__debut">
                 <img class="compare__img" src="assets/img/realisation-2-debut.webp" width="900" height="1125" loading="lazy"
-                     alt="Pendant : le barbier passe la tondeuse sur les côtés">
+                     alt="Avant : homme aux cheveux longs en bataille et barbe fournie, de profil">
               </div>
-              <span class="compare__tag compare__tag--debut">Pendant</span>
+              <span class="compare__tag compare__tag--debut">Avant</span>
               <span class="compare__tag compare__tag--fin">Après</span>
               <input class="compare__range" type="range" min="0" max="100" value="50">
               <div class="compare__handle" aria-hidden="true"><span class="compare__knob"></span></div>
             </div>
-            <figcaption class="compare__caption"><strong>Dégradé à blanc</strong> · 45 min · par Malik</figcaption>
+            <figcaption class="compare__caption"><strong>Dégradé + barbe</strong> · 50 min · par Malik</figcaption>
           </figure>
 
           <!-- Réalisation 3 -->
           <figure class="compare" role="tabpanel" id="real-3" aria-labelledby="tab-real-3" data-compare>
             <div class="compare__frame">
-              <!-- PHOTOS MANQUANTES : realisation-3-fin.webp et realisation-3-debut.webp (900×1125, 4:5) -->
               <img class="compare__img" src="assets/img/realisation-3-fin.webp" width="900" height="1125" loading="lazy"
-                   alt="Après : carré court flou à hauteur de mâchoire">
+                   alt="Après : carré court et net à hauteur de mâchoire">
               <div class="compare__debut">
                 <img class="compare__img" src="assets/img/realisation-3-debut.webp" width="900" height="1125" loading="lazy"
-                     alt="Avant : cheveux longs et lisses">
+                     alt="Avant : femme aux cheveux longs et lisses, de face">
               </div>
               <span class="compare__tag compare__tag--debut">Avant</span>
               <span class="compare__tag compare__tag--fin">Après</span>
               <input class="compare__range" type="range" min="0" max="100" value="50">
               <div class="compare__handle" aria-hidden="true"><span class="compare__knob"></span></div>
             </div>
-            <figcaption class="compare__caption"><strong>Carré court flou</strong> · 1 h · par Jo</figcaption>
-          </figure>
-
-          <!-- Réalisation 4 (exemple de paire « pendant / après ») -->
-          <figure class="compare" role="tabpanel" id="real-4" aria-labelledby="tab-real-4" data-compare>
-            <div class="compare__frame">
-              <!-- PHOTOS MANQUANTES : realisation-4-fin.webp et realisation-4-debut.webp (900×1125, 4:5) -->
-              <img class="compare__img" src="assets/img/realisation-4-fin.webp" width="900" height="1125" loading="lazy"
-                   alt="Après : barbe taillée, contours nets">
-              <div class="compare__debut">
-                <img class="compare__img" src="assets/img/realisation-4-debut.webp" width="900" height="1125" loading="lazy"
-                     alt="Pendant : rasage des contours au coupe-chou, mousse sur les joues">
-              </div>
-              <span class="compare__tag compare__tag--debut">Pendant</span>
-              <span class="compare__tag compare__tag--fin">Après</span>
-              <input class="compare__range" type="range" min="0" max="100" value="50">
-              <div class="compare__handle" aria-hidden="true"><span class="compare__knob"></span></div>
-            </div>
-            <figcaption class="compare__caption"><strong>Barbe à l’ancienne</strong> · 30 min · par Malik</figcaption>
+            <figcaption class="compare__caption"><strong>Carré court</strong> · 1 h · par Jo</figcaption>
           </figure>
         </div>
       </div>
@@ -733,10 +717,9 @@
           </div>
         </div>
 
-        <!-- PHOTO MANQUANTE : infos-salon.webp (1200×900, paysage 4:3) -->
         <figure class="infos__photo reveal">
           <img src="assets/img/infos-salon.webp" width="1200" height="900" loading="lazy"
-               alt="La devanture colorée du salon Ciseaux & Cie, à la Croix-Rousse">
+               alt="L’intérieur lumineux du salon : trois fauteuils de barbier face aux miroirs ovales, des plantes vertes et le poteau de barbier dans la vitrine">
         </figure>
       </div>
     </section>
