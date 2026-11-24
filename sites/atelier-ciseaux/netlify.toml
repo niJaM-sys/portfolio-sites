@@ -1,0 +1,15 @@
+# Configuration Netlify pour un déploiement depuis GitHub.
+# Dans Netlify, indique seulement « Base directory » = sites/atelier-ciseaux :
+# Netlify lit alors ce fichier.
+
+[build]
+  # Pas d'étape de build : le site est publié tel quel (HTML/CSS/JS statiques).
+  publish = "."
+
+# Le README est une fiche de travail interne : on le cache aux visiteurs
+# (réponse « 404 introuvable »). force = true : la règle s'applique même si le fichier existe.
+[[redirects]]
+  from = "/README.md"
+  to = "/404"
+  status = 404
+  force = true
