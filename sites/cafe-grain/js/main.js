@@ -203,12 +203,12 @@
     tl.to('.hero__top, .hero__bottom, .hero__badge, .hero__scroll', { autoAlpha: 0, y: -40, duration: .3 }, 0)
       // Le cadre se resserre autour de la tasse (tiers droit sur desktop, haut de l'écran sur mobile)
       .to('.hero__media', {
-        clipPath: isDesktop ? 'inset(10% 5% 28% 50% round 28px)' : 'inset(13% 6% 34% 6% round 20px)',
+        clipPath: isDesktop ? 'inset(8% 3% 36% 58% round 28px)' : 'inset(13% 6% 34% 6% round 20px)',
         duration: 1,
       }, 0)
       .to('.hero__media img', {
         scale: 1.15,
-        transformOrigin: isDesktop ? '74% 35%' : '50% 34%',
+        transformOrigin: isDesktop ? '85% 25%' : '50% 36%',
         duration: 1,
       }, 0)
       .to('.hero', { backgroundColor: '#F3EBDD', duration: .55 }, .45);
@@ -422,8 +422,10 @@
         tl.to(fills, { fill: colors[i], duration: 1 }, at)
           .to(temperature, { value: temps[i], duration: 1, onUpdate: renderTemp }, at);
       }
-      tl.to(steps[i - 1], { autoAlpha: 0, y: -40, duration: .3 }, at + .55)
-        .to(steps[i], { autoAlpha: 1, y: 0, duration: .3 }, at + .7);
+      // L'étape précédente a totalement disparu (à .65) avant que la suivante
+      // commence à apparaître (à .75) : les deux textes ne se croisent jamais.
+      tl.to(steps[i - 1], { autoAlpha: 0, y: -30, duration: .25, ease: 'power2.in' }, at + .4)
+        .to(steps[i], { autoAlpha: 1, y: 0, duration: .25, ease: 'power2.out' }, at + .75);
     }
 
     // La vapeur apparaît au séchage
@@ -434,11 +436,13 @@
     tl.to('.bean__cracks', { opacity: 1, duration: .05 }, 2.5)
       .to(cracks, { strokeDashoffset: 0, stagger: .08, duration: .3 }, 2.5)
       .to(body, { keyframes: { x: [0, -7, 6, -5, 4, -2, 0] }, duration: .6 }, 2.5)
-      .to(body, { scale: 1.16, transformOrigin: '50% 50%', duration: .8 }, 2.6);
+      .to(body, { scale: 1.16, transformOrigin: '50% 50%', duration: .8 }, 2.6)
+      // Développement : les huiles remontent, le grain prend des reflets
+      .to('.bean__gloss', { opacity: 1, duration: 1 }, 2.8);
 
     // Mouture : le grain se fend, ses moitiés s'écartent et s'effritent
     if (isDesktop) tl.to('.thermo', { autoAlpha: .25, duration: .4 }, 4);
-    tl.to('.bean__cracks, .bean__crease, .steam', { opacity: 0, duration: .25 }, 4)
+    tl.to('.bean__cracks, .bean__crease, .bean__gloss, .steam', { opacity: 0, duration: .25 }, 4)
       .to(left, { x: -55, rotation: -30, transformOrigin: '100% 50%', duration: .6 }, 4.05)
       .to(right, { x: 55, rotation: 30, transformOrigin: '0% 50%', duration: .6 }, 4.05)
       .to([left, right], { opacity: 0, scale: .5, duration: .4 }, 4.5);

@@ -247,8 +247,9 @@ em { font-style: italic; }
   width: 100%;
   height: 100%;
 }
-/* Ancrage à droite : sur les écrans moins larges (4:3), la tasse reste entière */
-.hero__media img { object-fit: cover; object-position: 75% 50%; }
+/* Ancrage en haut à droite : quel que soit le format d'écran, l'image n'est
+   rognée que par le bas ou la gauche, donc la tasse (en haut à droite) reste entière */
+.hero__media img { object-fit: cover; object-position: 100% 0%; }
 @media (max-width: 767px) { .hero__media img { object-position: 50% 50%; } }
 /* Voile sombre pour garder le texte lisible sur la photo */
 .hero__media::after {
@@ -260,11 +261,12 @@ em { font-style: italic; }
 
 .hero__top, .hero__title, .hero__bottom, .hero__scroll { position: relative; z-index: 2; }
 
+/* Infos alignées à gauche : le coin haut droit est réservé à la tasse */
 .hero__top {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  gap: .75rem 2rem;
+  justify-content: flex-start;
+  gap: .75rem 2.5rem;
 }
 
 .open-status {
@@ -298,6 +300,10 @@ em { font-style: italic; }
   line-height: .8;
   letter-spacing: -.05em;
   margin: 0 0 .06em -.04em;
+}
+/* Téléphones courts (iPhone SE…) : titre un peu plus petit pour laisser la place à la tasse */
+@media (max-width: 767px) and (max-height: 700px) {
+  .hero__title { font-size: 30vw; }
 }
 .hero__word { display: flex; }
 .hl { display: inline-block; overflow: clip; padding-bottom: .06em; }
@@ -593,7 +599,9 @@ em { font-style: italic; }
   overflow: visible;
 }
 .bean__crease { stroke: rgba(0, 0, 0, .35); stroke-width: 5; stroke-linecap: round; }
-.bean__cracks path { stroke: rgba(0, 0, 0, .55); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.bean__cracks path { stroke: rgba(20, 10, 5, .45); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.bean__gloss { opacity: 0; }
+html:not(.has-motion) .bean__gloss { opacity: .6; }
 .steam path { stroke: rgba(243, 235, 221, .5); stroke-width: 4; }
 /* Sans animation : le grain s'affiche torréfié, sans vapeur ni fissures */
 .bean__cracks, .steam { opacity: 0; }

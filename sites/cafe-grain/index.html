@@ -358,6 +358,11 @@
                 <stop offset=".45" stop-color="#fff" stop-opacity=".06"/>
                 <stop offset="1" stop-color="#000" stop-opacity=".28"/>
               </radialGradient>
+              <!-- Reflet huileux du grain torréfié -->
+              <radialGradient id="bean-gloss">
+                <stop offset="0" stop-color="#fff" stop-opacity=".55"/>
+                <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+              </radialGradient>
             </defs>
             <g class="steam" fill="none" stroke-linecap="round">
               <path d="M70 -10 C55 -35 85 -55 70 -85"/>
@@ -375,11 +380,17 @@
                 <path class="bean__shine" d="M100,30 A78,110 0 0 1 100,250 C120,190 78,150 100,140 C122,130 80,90 100,30 Z" fill="url(#bean-shine)"/>
               </g>
               <path class="bean__crease" d="M100,34 C80,90 122,130 100,140 C78,150 120,190 100,246" fill="none"/>
+              <!-- Fines craquelures irrégulières qui partent du sillon (premier crack) -->
               <g class="bean__cracks" fill="none">
-                <path d="M62,92 L74,104 L70,116"/>
-                <path d="M140,70 L130,86 L138,96"/>
-                <path d="M58,170 L72,176 L66,192"/>
-                <path d="M146,182 L132,190 L140,206"/>
+                <path d="M106,72 C110,78 112,85 118,91"/>
+                <path d="M93,117 C87,120 84,126 78,129 C75,131 73,135 72,140"/>
+                <path d="M111,166 C116,170 118,177 124,181"/>
+                <path d="M96,207 C91,212 90,218 85,223"/>
+              </g>
+              <!-- Reflets subtils : les huiles remontent à la surface -->
+              <g class="bean__gloss">
+                <ellipse cx="62" cy="96" rx="12" ry="30" transform="rotate(-18 62 96)" fill="url(#bean-gloss)"/>
+                <ellipse cx="140" cy="188" rx="8" ry="20" transform="rotate(-14 140 188)" fill="url(#bean-gloss)"/>
               </g>
             </g>
           </svg>
