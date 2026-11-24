@@ -856,7 +856,19 @@
         <!-- Étape 3 : jour et heure (calculés par le JS) -->
         <fieldset class="step" data-step="3" hidden>
           <legend class="step__title" tabindex="-1">Quand&nbsp;?</legend>
-          <p class="step__label" id="days-label">Jour</p>
+          <!-- Une semaine à la fois (lundi → dimanche), avec des flèches pour changer de semaine -->
+          <div class="week">
+            <p class="step__label" id="days-label">Jour</p>
+            <div class="week__nav">
+              <button class="week__arrow" type="button" data-week-prev aria-label="Semaine précédente">
+                <svg class="icon icon--back" aria-hidden="true"><use href="#i-fleche"></use></svg>
+              </button>
+              <p class="week__label" aria-live="polite" data-week-label></p>
+              <button class="week__arrow" type="button" data-week-next aria-label="Semaine suivante">
+                <svg class="icon" aria-hidden="true"><use href="#i-fleche"></use></svg>
+              </button>
+            </div>
+          </div>
           <div class="days" role="radiogroup" aria-labelledby="days-label" data-days></div>
           <p class="step__label" id="slots-label">Heure <span class="step__hint">(les créneaux barrés sont déjà pris)</span></p>
           <div class="slots" role="radiogroup" aria-labelledby="slots-label" data-slots></div>

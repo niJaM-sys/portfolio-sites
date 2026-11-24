@@ -745,12 +745,32 @@ h1, h2, h3, h4 { font-family: var(--font-titre); line-height: 1.05; letter-spaci
 .avatar--any { background: var(--bleu-pale); }
 .avatar--any .icon { width: 28px; height: 28px; }
 
-.days { display: flex; gap: .5rem; overflow-x: auto; scrollbar-width: none; padding: .2rem .2rem .6rem; margin: 0 -.2rem .5rem; }
-.days::-webkit-scrollbar { display: none; }
-.day { flex-shrink: 0; grid-template-columns: 1fr; justify-items: center; text-align: center; padding: .6rem .8rem; min-width: 68px; }
-.day__weekday { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
-.day__num { font: 800 1.5rem/1 var(--font-titre); }
-.day__month { font-size: .75rem; }
+/* Semaine : « Jour » à gauche, flèches et dates à droite */
+.week { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin: .25rem 0 .55rem; }
+.week .step__label { margin: 0; }
+.week__nav { display: flex; align-items: center; gap: .4rem; }
+.week__label { font: 700 .9rem/1.2 var(--font-titre); min-width: 8.5em; text-align: center; text-wrap: balance; } /* passe sur 2 lignes si l'écran est très étroit */
+.week__arrow {
+  width: 36px; height: 36px; flex-shrink: 0; border-radius: 50%;
+  display: grid; place-items: center; cursor: pointer;
+  border: 2px solid var(--encre); background: var(--blanc);
+  transition: translate .25s var(--ressort), box-shadow .25s var(--ressort), opacity .2s;
+}
+.week__arrow .icon { width: 16px; height: 16px; }
+.week__arrow:hover:not(:disabled) { translate: -2px -2px; box-shadow: 2px 2px 0 var(--encre); }
+.week__arrow:disabled { opacity: .3; cursor: not-allowed; }
+.icon--back { rotate: 180deg; }
+
+/* 7 colonnes qui partagent toute la largeur : jamais de débordement.
+   minmax(0, 1fr) autorise une colonne à rétrécir sous la taille de son contenu. */
+.days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: .3rem; margin-bottom: 1rem; }
+.day { grid-template-columns: 1fr; justify-items: center; gap: .2rem; text-align: center; padding: .55rem 0 .5rem; border-radius: 14px; min-width: 0; }
+.day:not(:has(input:disabled)):hover { translate: 0 -2px; box-shadow: 0 2px 0 var(--encre); }
+.day:has(input:disabled) { text-decoration: none; opacity: .35; border-style: dashed; }
+.day__weekday { font-size: .66rem; font-weight: 700; text-transform: uppercase; letter-spacing: .02em; }
+.day__num { font: 800 1.2rem/1 var(--font-titre); }
+/* Petit point sous la date du jour */
+.day.is-today .day__num::after { content: ''; display: block; width: 5px; height: 5px; margin: .2rem auto 0; border-radius: 50%; background: var(--vermillon); }
 .slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: .45rem; }
 .slot { grid-template-columns: 1fr; justify-items: center; padding: .6rem .3rem; font: 700 .95rem var(--font-titre); }
 .slots__empty { grid-column: 1 / -1; color: var(--encre-douce); font-size: .95rem; }
@@ -867,6 +887,11 @@ h1, h2, h3, h4 { font-family: var(--font-titre); line-height: 1.05; letter-spaci
   .member__photo { aspect-ratio: 4 / 5; }
   .reviews { grid-auto-columns: 46%; }
   .choices--grid { grid-template-columns: repeat(4, 1fr); }
+  .days { gap: .45rem; }
+  .day { padding: .7rem 0 .6rem; }
+  .day__weekday { font-size: .75rem; }
+  .day__num { font-size: 1.45rem; }
+  .week__label { font-size: 1rem; }
   .avis__head { grid-template-columns: 1fr auto; align-items: end; }
   .infos__actions .btn { flex: 0 0 auto; }
 }

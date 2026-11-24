@@ -346,23 +346,36 @@
     const fmt = (options) => new Intl.DateTimeFormat('fr-FR', { timeZone: 'Europe/Paris', ...options });
     const fmtWeekday = fmt({ weekday: 'short' });
     const fmtDay = fmt({ day: 'numeric' });
-    const fmtMonth = fmt({ month: 'short' });
+    const fmtDayMonth = fmt({ day: 'numeric', month: 'long' });
     const fmtLong = fmt({ weekday: 'long', day: 'numeric', month: 'long' });
 
+    const WEEKS = 4; // ✏️ nombre de semaines réservables, semaine en cours comprise
+    const weekLabel = dialog.querySelector('[data-week-label]');
+    const weekPrev = dialog.querySelector('[data-week-prev]');
+    const weekNext = dialog.querySelector('[data-week-next]');
+    let week = 0; // semaine affichée (0 = semaine en cours)
+
+    // Tous les jours de WEEKS semaines complètes, du lundi au dimanche.
+    // Chaque jour garde ses créneaux possibles (vide si passé, fermé ou trop tard).
     function computeDays(duration) {
       const now = nowInParis();
+      // On part de midi (heure de Paris) : ajouter des jours entiers ne fait
+      // jamais changer de date, même lors du passage à l'heure d'été / d'hiver.
+      const noon = Date.now() + (12 * 60 - now.minutes) * 60000;
+      const monday = -((now.day + 6) % 7); // nombre de jours jusqu'au lundi de cette semaine
       const list = [];
-      for (let i = 0; i < 21 && list.length < 10; i++) {
-        const h = hours[(now.day + i) % 7];
-        if (!h || !h.open) continue;
-        const first = i === 0 ? now.minutes + 60 : 0; // aujourd'hui : pas avant 1 h
+      for (let i = monday; i < monday + WEEKS * 7; i++) {
+        const h = hours[(((now.day + i) % 7) + 7) % 7];
+        const closed = !h || !h.open;
         const slots = [];
-        for (let t = toMinutes(h.open); t + duration <= toMinutes(h.close); t += 30) {
-          if (t >= first) slots.push(fromMinutes(t));
+        if (i >= 0 && !closed) {
+          const first = i === 0 ? now.minutes + 60 : 0; // aujourd'hui : pas avant 1 h
+          for (let t = toMinutes(h.open); t + duration <= toMinutes(h.close); t += 30) {
+            if (t >= first) slots.push(fromMinutes(t));
+          }
         }
-        if (!slots.length) continue;
-        const date = new Date(Date.now() + i * 86400000);
-        list.push({ key: dateKey.format(date), date, slots });
+        const date = new Date(noon + i * 86400000);
+        list.push({ key: dateKey.format(date), date, slots, closed, past: i < 0, today: i === 0 });
       }
       return list;
     }
@@ -375,26 +388,56 @@
     };
     const isTaken = (day, time) => hash(`${day}|${state.stylist}|${time}`) < (state.stylist === 'any' ? 0.15 : 0.4);
 
+    // Appelé en arrivant à l'étape 3 : on se place sur le premier jour disponible
     function renderDays() {
       days = computeDays(byId(state.service).duration);
+      const first = days.findIndex((d) => d.slots.length);
+      week = first < 0 ? 0 : Math.floor(first / 7);
+      state.day = first < 0 ? null : days[first].key;
+      renderWeek();
+    }
+
+    // Affiche les 7 jours de la semaine `week` dans la grille
+    function renderWeek() {
+      const list = days.slice(week * 7, week * 7 + 7);
+      // Jour choisi hors de cette semaine : on prend son premier jour disponible
+      if (!list.some((d) => d.key === state.day && d.slots.length)) {
+        const firstFree = list.find((d) => d.slots.length);
+        state.day = firstFree ? firstFree.key : null;
+      }
+
+      const start = list[0].date;
+      const end = list[6].date;
+      const sameMonth = fmt({ month: 'long' }).format(start) === fmt({ month: 'long' }).format(end);
+      weekLabel.textContent = `${sameMonth ? fmtDay.format(start) : fmtDayMonth.format(start)} – ${fmtDayMonth.format(end)}`;
+      weekPrev.disabled = week === 0;
+      weekNext.disabled = week === WEEKS - 1;
+
       daysBox.innerHTML = '';
-      days.forEach((d, i) => {
-        const label = el('label', 'choice day', `
-          <input type="radio" name="day" value="${d.key}" aria-label="${fmtLong.format(d.date)}"${i === 0 ? ' checked' : ''}>
-          <span class="day__weekday">${fmtWeekday.format(d.date).replace('.', '')}</span>
-          <span class="day__num">${fmtDay.format(d.date)}</span>
-          <span class="day__month">${fmtMonth.format(d.date)}</span>`);
+      list.forEach((d) => {
+        const off = !d.slots.length;
+        const why = d.past ? ' (passé)' : d.closed ? ' (fermé)' : off ? ' (plus de créneau)' : '';
+        const label = el('label', `choice day${d.today ? ' is-today' : ''}`, `
+          <input type="radio" name="day" value="${d.key}" aria-label="${fmtLong.format(d.date)}${why}"${off ? ' disabled' : ''}${d.key === state.day ? ' checked' : ''}>
+          <span class="day__weekday" aria-hidden="true">${fmtWeekday.format(d.date).replace('.', '')}</span>
+          <span class="day__num" aria-hidden="true">${fmtDay.format(d.date)}</span>`);
         daysBox.appendChild(label);
       });
-      state.day = days.length ? days[0].key : null;
       renderSlots();
     }
+
+    weekPrev.addEventListener('click', () => { if (week > 0) { week -= 1; renderWeek(); updateNav(); } });
+    weekNext.addEventListener('click', () => { if (week < WEEKS - 1) { week += 1; renderWeek(); updateNav(); } });
 
     function renderSlots() {
       state.slot = null;
       slotsBox.innerHTML = '';
       const day = days.find((d) => d.key === state.day);
-      const free = day ? day.slots.filter((t) => !isTaken(day.key, t)) : [];
+      if (!day) {
+        slotsBox.appendChild(el('p', 'slots__empty', 'Aucun créneau cette semaine : passez à la semaine suivante.'));
+        return;
+      }
+      const free = day.slots.filter((t) => !isTaken(day.key, t));
       if (!free.length) {
         slotsBox.appendChild(el('p', 'slots__empty', 'Complet ce jour-là : essayez un autre jour.'));
         return;
