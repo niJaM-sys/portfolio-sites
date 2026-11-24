@@ -26,6 +26,11 @@
 
   /* Hauteur d'écran fiable sur mobile (la barre d'adresse ne fait pas sauter la mise en page) */
   --vh-full: 100vh;
+
+  /* Place réservée en bas d'écran pour le badge « Powered by Netlify »
+     (64 px, en bas à droite, imposé sur le plan gratuit).
+     ✏️ Mettre 0px si le site passe sur un plan ou un hébergeur sans badge. */
+  --badge-space: 64px;
 }
 @supports (height: 100svh) {
   :root { --vh-full: 100svh; }
@@ -233,7 +238,8 @@ em { font-style: italic; }
   color: var(--creme);
   display: grid;
   grid-template-rows: auto 1fr auto auto;
-  padding: 5.5rem var(--gutter) 1.5rem;
+  /* En bas : place pour la barre mobile (52 px + marges) et le badge Netlify */
+  padding: 5.5rem var(--gutter) calc(5rem + var(--badge-space) + env(safe-area-inset-bottom));
 }
 
 .hero__media {
@@ -322,8 +328,8 @@ em { font-style: italic; }
   line-height: 1.25;
 }
 .hero__actions { display: flex; flex-wrap: wrap; gap: .75rem; }
-/* Sur mobile, l'itinéraire est déjà dans la barre du bas */
-@media (max-width: 767px) { .hero__actions .btn--ghost-light { display: none; } }
+/* Sur mobile, ces actions sont déjà dans la barre du bas (Appeler · La carte · Itinéraire) */
+@media (max-width: 767px) { .hero__actions { display: none; } }
 
 /* Badge : masqué sur mobile (la tasse occupe le haut de l'écran),
    placé sous la tasse, à droite du titre, sur desktop */
@@ -840,7 +846,7 @@ html:not(.has-motion) .avis__rows { overflow-x: auto; }
   flex-wrap: wrap;
   justify-content: space-between;
   gap: .5rem 2rem;
-  padding-block: 1.5rem;
+  padding-block: 1.5rem calc(1.5rem + var(--badge-space));
   border-top: 1px solid rgba(243, 235, 221, .15);
   font-size: .8rem;
   color: rgba(243, 235, 221, .72);
@@ -862,7 +868,7 @@ html:not(.has-motion) .avis__rows { overflow-x: auto; }
 .mobile-bar {
   position: fixed;
   left: .75rem; right: .75rem;
-  bottom: calc(.75rem + env(safe-area-inset-bottom));
+  bottom: calc(.75rem + var(--badge-space) + env(safe-area-inset-bottom));  /* au-dessus du badge Netlify */
   z-index: 190;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -893,7 +899,7 @@ body { padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
   body { padding-bottom: 0; }
   .site-footer { margin-bottom: 0; padding-bottom: 0; }
 
-  .hero { padding: 6.5rem var(--gutter) 2rem; }
+  .hero { padding: 6.5rem var(--gutter) calc(2rem + var(--badge-space)); }
   .hero__bottom {
     flex-direction: row;
     justify-content: space-between;
