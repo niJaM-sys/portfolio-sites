@@ -1,0 +1,7 @@
+# Photos originales (lourdes) : on ne versionne que les versions optimisées d'assets/img
+sites/*/assets/brut/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+desktop.ini

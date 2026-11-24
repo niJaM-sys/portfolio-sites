@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ============ SEO ============ -->
+  <title>Grain — Café de spécialité & torréfacteur à Lyon 1er</title>
+  <meta name="description" content="Café de spécialité torréfié sur place à Lyon 1er : espresso, filtre, cold brew et pâtisseries maison. Ouvert du mardi au dimanche, 14 rue Royale.">
+  <meta name="theme-color" content="#2B1D14">
+  <!-- À mettre à jour avec le vrai nom de domaine une fois en ligne -->
+  <link rel="canonical" href="https://cafe-grain.fr/">
+
+  <!-- Open Graph (aperçu quand on partage le lien) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Grain — Café de spécialité & torréfacteur à Lyon">
+  <meta property="og:description" content="Torréfié lentement, à Lyon. Espresso, filtre et pâtisseries maison, 14 rue Royale.">
+  <meta property="og:url" content="https://cafe-grain.fr/">
+  <!-- PHOTO MANQUANTE : og-image.jpg (1200×630). Les réseaux sociaux exigent une URL absolue. -->
+  <meta property="og:image" content="https://cafe-grain.fr/assets/img/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Polices : Fraunces (titres) + Manrope (texte) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Manrope:wght@400..700&display=swap">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.28/dist/lenis.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Indique au CSS que JavaScript est actif (sinon tout le contenu reste visible, sans animation) -->
+  <script>
+    document.documentElement.classList.add('js', 'is-loading');
+    // Sécurité : si le JS principal ne charge pas, on retire le rideau au bout de 4 s
+    window.__introFallback = setTimeout(function () { document.documentElement.classList.remove('is-loading'); }, 4000);
+  </script>
+
+  <!-- Données structurées pour Google (SEO local).
+       ⚠️ Si tu changes l'adresse, le téléphone ou les horaires, modifie-les aussi ici. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CafeOrCoffeeShop",
+    "name": "Grain",
+    "description": "Café de spécialité et torréfacteur à Lyon 1er.",
+    "url": "https://cafe-grain.fr/",
+    "image": "https://cafe-grain.fr/assets/img/og-image.jpg",
+    "telephone": "+33465712345",
+    "email": "bonjour@cafe-grain.fr",
+    "priceRange": "€",
+    "servesCuisine": ["Café de spécialité", "Pâtisseries"],
+    "hasMenu": "https://cafe-grain.fr/#carte",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "14 rue Royale",
+      "postalCode": "69001",
+      "addressLocality": "Lyon",
+      "addressCountry": "FR"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 45.7697, "longitude": 4.8366 },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:00", "closes": "18:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "19:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "09:00", "closes": "15:00" }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <!-- Rideau de l'animation d'entrée (décoratif) -->
+  <div class="intro-curtain" aria-hidden="true">
+    <span class="intro-curtain__mark">Grain</span>
+  </div>
+
+  <!-- Barre de progression : la page « torréfie » du vert au brun pendant le scroll -->
+  <div class="roast-progress" aria-hidden="true"><span></span></div>
+
+  <!-- ============ EN-TÊTE ============ -->
+  <header class="site-header">
+    <a class="logo" href="#top" aria-label="Grain, retour en haut de page">Grain<span class="logo__dot">.</span></a>
+    <nav class="main-nav" aria-label="Navigation principale">
+      <ul>
+        <li><a href="#histoire">Histoire</a></li>
+        <li><a href="#savoir-faire">Savoir-faire</a></li>
+        <li><a href="#carte">Carte</a></li>
+        <li><a href="#torrefaction">Torréfaction</a></li>
+        <li><a href="#infos">Infos</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--small" href="tel:+33465712345">Appeler</a>
+  </header>
+
+  <main id="contenu">
+
+    <!-- ===================================================
+         1. HERO
+         =================================================== -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <figure class="hero__media">
+        <div class="hero__media-inner">
+          <!-- Deux cadrages : portrait pour mobile, paysage (tasse sur le tiers droit) pour desktop -->
+          <picture>
+            <source media="(max-width: 767px)" srcset="assets/img/hero-barista-versement-mobile.webp" width="900" height="1600">
+            <img src="assets/img/hero-barista-versement.webp" width="1600" height="1000"
+                 alt="Une goutte tombe dans une tasse de café noir, posée sur des grains torréfiés" fetchpriority="high">
+          </picture>
+        </div>
+      </figure>
+
+      <div class="hero__top">
+        <p class="eyebrow" data-intro>Café de spécialité &amp; torréfacteur · Lyon 1er</p>
+        <!-- Rempli automatiquement par main.js à partir des horaires -->
+        <p class="open-status" data-intro data-open-status>
+          <span class="open-status__dot"></span><span class="open-status__text">Horaires ci-dessous</span>
+        </p>
+      </div>
+
+      <h1 class="hero__title" id="hero-title">
+        <span class="sr-only">Grain, café de spécialité et torréfacteur à Lyon</span>
+        <span class="hero__word" aria-hidden="true">
+          <span class="hl"><span class="hl__inner">G</span></span><span class="hl"><span class="hl__inner">r</span></span><span class="hl"><span class="hl__inner">a</span></span><span class="hl"><span class="hl__inner">i</span></span><span class="hl"><span class="hl__inner">n</span></span>
+        </span>
+      </h1>
+
+      <div class="hero__bottom">
+        <p class="hero__tagline" data-intro>Torréfié <em>lentement</em>, à Lyon.<br>Servi à sa juste mesure.</p>
+        <div class="hero__actions" data-intro>
+          <a class="btn btn--light" href="#carte">Voir la carte</a>
+          <a class="btn btn--ghost-light" href="#infos">14 rue Royale · Itinéraire</a>
+        </div>
+      </div>
+
+      <!-- Badge rotatif décoratif -->
+      <div class="hero__badge" aria-hidden="true">
+        <svg viewBox="0 0 120 120">
+          <defs><path id="badge-circle" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
+          <text><textPath href="#badge-circle">TORRÉFIÉ À LYON · DEPUIS 2019 · </textPath></text>
+          <ellipse cx="60" cy="60" rx="10" ry="14"/>
+        </svg>
+      </div>
+
+      <p class="hero__scroll" aria-hidden="true"><span data-intro>Faites défiler</span></p>
+    </section>
+
+
+    <!-- ===================================================
+         2. NOTRE HISTOIRE (section épinglée : le texte s'éclaire au scroll)
+         =================================================== -->
+    <section class="histoire" id="histoire" aria-labelledby="histoire-title">
+      <div class="histoire__inner container">
+        <h2 class="eyebrow" id="histoire-title">Notre histoire</h2>
+
+        <!-- Texte manifeste : les mots en <em> ressortent en vert sauge -->
+        <p class="manifesto">
+          Chez Grain, on prend <em>le temps</em>. On choisit chaque lot à la ferme,
+          on le torréfie <em>lentement</em> dans notre atelier lyonnais, et on vous le sert
+          à sa juste mesure. Parce qu’un café, avant tout, c’est <em>un fruit</em>.
+        </p>
+
+        <!-- Chiffres clés (data-count = valeur finale) -->
+        <ul class="chiffres">
+          <li><strong data-count="12">12</strong><span>origines par an</span></li>
+          <li><strong data-count="48" data-suffix=" h">48 h</strong><span>de repos avant la vente</span></li>
+          <li><strong data-count="100" data-suffix=" %">100 %</strong><span>acheté en direct aux fermes</span></li>
+        </ul>
+      </div>
+
+      <!-- Photos flottantes en parallaxe (masquées sur mobile) -->
+      <figure class="histoire__fig histoire__fig--1">
+        <img src="assets/img/histoire-mains-grains-verts.webp" width="600" height="800" loading="lazy"
+             alt="Le torréfacteur tient une poignée de grains de café verts au-dessus d'un sac en toile de jute">
+      </figure>
+      <figure class="histoire__fig histoire__fig--2">
+        <img src="assets/img/histoire-tasse-grains-torrefies.webp" width="600" height="733" loading="lazy"
+             alt="Une tasse en céramique remplie de grains de café fraîchement torréfiés">
+      </figure>
+    </section>
+
+
+    <!-- ===================================================
+         2 bis. LE SAVOIR-FAIRE (défilement horizontal épinglé)
+         =================================================== -->
+    <section class="savoir" id="savoir-faire" aria-labelledby="savoir-title">
+      <div class="savoir__track">
+
+        <div class="savoir__intro">
+          <p class="eyebrow">Le savoir-faire</p>
+          <h2 class="title-xl" id="savoir-title">Du champ<br>à la tasse,<br><em>quatre gestes.</em></h2>
+        </div>
+
+        <article class="panel">
+          <figure class="panel__media">
+            <img src="assets/img/savoir-sourcer-cerises.webp" width="1000" height="1250" loading="lazy"
+                 alt="Cerises de café rouges mûres sur la branche">
+          </figure>
+          <div class="panel__text">
+            <span class="panel__num" aria-hidden="true">01</span>
+            <h3>Sourcer</h3>
+            <p>Nous achetons en direct à des fermes d’Éthiopie, du Pérou et de Colombie. Prix juste, traçabilité totale.</p>
+          </div>
+        </article>
+
+        <article class="panel">
+          <figure class="panel__media">
+            <img src="assets/img/savoir-torrefier-machine.webp" width="1000" height="1250" loading="lazy"
+                 alt="Grains de café qui tournent dans le tambour du torréfacteur">
+          </figure>
+          <div class="panel__text">
+            <span class="panel__num" aria-hidden="true">02</span>
+            <h3>Torréfier</h3>
+            <p>Par petits lots de 12 kg, dans notre atelier de la Croix-Rousse. Chaque profil est ajusté à son origine.</p>
+          </div>
+        </article>
+
+        <article class="panel">
+          <figure class="panel__media">
+            <img src="assets/img/savoir-reposer-sacs.webp" width="1000" height="1250" loading="lazy"
+                 alt="Sachets de café en papier kraft alignés sur une étagère">
+          </figure>
+          <div class="panel__text">
+            <span class="panel__num" aria-hidden="true">03</span>
+            <h3>Reposer</h3>
+            <p>48 heures de repos avant la vente : le grain dégaze et révèle enfin tous ses arômes.</p>
+          </div>
+        </article>
+
+        <article class="panel">
+          <figure class="panel__media">
+            <img src="assets/img/savoir-extraire-espresso.webp" width="1000" height="1250" loading="lazy"
+                 alt="Un espresso coule de la machine dans une tasse, en gros plan">
+          </figure>
+          <div class="panel__text">
+            <span class="panel__num" aria-hidden="true">04</span>
+            <h3>Extraire</h3>
+            <p>Mouture à la minute, eau filtrée, recette pesée au gramme près. Pour chaque tasse.</p>
+          </div>
+        </article>
+
+      </div>
+      <div class="savoir__progress" aria-hidden="true"><span></span></div>
+    </section>
+
+
+    <!-- ===================================================
+         3. LA CARTE
+         ✏️ Pour modifier un produit : change le nom, la description ou le prix
+            dans le bloc <li class="item"> correspondant.
+         =================================================== -->
+    <section class="carte" id="carte" aria-labelledby="carte-title">
+      <div class="container">
+        <header class="carte__header">
+          <p class="eyebrow">Boissons &amp; douceurs</p>
+          <h2 class="carte__title" id="carte-title" aria-label="La carte">La carte</h2>
+          <p class="carte__intro">Tout est préparé au comptoir, avec nos grains torréfiés dans la semaine.</p>
+        </header>
+
+        <!-- ----- Catégorie : Espresso & lait ----- -->
+        <div class="cat">
+          <figure class="cat__media">
+            <img src="assets/img/carte-espresso-lait.webp" width="900" height="1100" loading="lazy"
+                 alt="Un café au lait avec un dessin en mousse, servi dans un gobelet">
+          </figure>
+          <div class="cat__body">
+            <h3 class="cat__title">Espresso &amp; lait</h3>
+            <ul class="items">
+              <li class="item"><span class="item__name">Espresso</span><span class="item__line"></span><span class="item__price">2,50 €</span><span class="item__desc">Notre assemblage du moment, servi court</span></li>
+              <li class="item"><span class="item__name">Allongé</span><span class="item__line"></span><span class="item__price">3,00 €</span><span class="item__desc">Espresso et eau chaude, tout en douceur</span></li>
+              <li class="item"><span class="item__name">Cortado</span><span class="item__line"></span><span class="item__price">3,80 €</span><span class="item__desc">Moitié espresso, moitié lait chaud</span></li>
+              <li class="item"><span class="item__name">Cappuccino</span><span class="item__line"></span><span class="item__price">4,20 €</span><span class="item__desc">Lait entier fermier, mousse onctueuse</span></li>
+              <li class="item"><span class="item__name">Flat white</span><span class="item__line"></span><span class="item__price">4,50 €</span><span class="item__desc">Double ristretto, lait micro-moussé</span></li>
+              <li class="item item--signature"><span class="item__name">Latte sauge &amp; miel <small>Signature</small></span><span class="item__line"></span><span class="item__price">5,20 €</span><span class="item__desc">Sirop maison à la sauge et au miel des Monts du Lyonnais</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ----- Catégorie : Méthodes douces ----- -->
+        <div class="cat">
+          <figure class="cat__media">
+            <img src="assets/img/carte-methodes-douces.webp" width="900" height="1100" loading="lazy"
+                 alt="Un café filtre qui s'écoule dans une carafe posée sur une balance">
+          </figure>
+          <div class="cat__body">
+            <h3 class="cat__title">Méthodes douces</h3>
+            <ul class="items">
+              <li class="item"><span class="item__name">Filtre V60</span><span class="item__line"></span><span class="item__price">4,50 €</span><span class="item__desc">L’origine du jour, notes florales et fruitées</span></li>
+              <li class="item"><span class="item__name">AeroPress</span><span class="item__line"></span><span class="item__price">4,80 €</span><span class="item__desc">Corps rond, tasse intense et propre</span></li>
+              <li class="item"><span class="item__name">Chemex à partager</span><span class="item__line"></span><span class="item__price">8,00 €</span><span class="item__desc">Pour deux tasses, à savourer sans se presser</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ----- Catégorie : Froid & autres ----- -->
+        <div class="cat">
+          <figure class="cat__media">
+            <img src="assets/img/carte-froid.webp" width="900" height="1100" loading="lazy"
+                 alt="Un café glacé au lait avec des glaçons, dans un verre double paroi">
+          </figure>
+          <div class="cat__body">
+            <h3 class="cat__title">Froid &amp; autres</h3>
+            <ul class="items">
+              <li class="item"><span class="item__name">Cold brew</span><span class="item__line"></span><span class="item__price">4,80 €</span><span class="item__desc">Infusé 18 heures à froid</span></li>
+              <li class="item"><span class="item__name">Espresso tonic</span><span class="item__line"></span><span class="item__price">5,00 €</span><span class="item__desc">Tonic artisanal, zeste d’orange</span></li>
+              <li class="item"><span class="item__name">Chocolat chaud</span><span class="item__line"></span><span class="item__price">4,50 €</span><span class="item__desc">Chocolat noir 70 %, lait entier</span></li>
+              <li class="item"><span class="item__name">Thé en vrac</span><span class="item__line"></span><span class="item__price">3,80 €</span><span class="item__desc">Sélection de la maison, infusé à la bonne température</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ----- Catégorie : Pâtisseries ----- -->
+        <div class="cat">
+          <figure class="cat__media">
+            <img src="assets/img/carte-patisseries.webp" width="900" height="1100" loading="lazy"
+                 alt="Des cinnamon rolls glacés, tout juste sortis du four">
+          </figure>
+          <div class="cat__body">
+            <h3 class="cat__title">Pâtisseries maison</h3>
+            <ul class="items">
+              <li class="item"><span class="item__name">Financier pistache</span><span class="item__line"></span><span class="item__price">2,80 €</span><span class="item__desc">Beurre noisette, pistache de Sicile</span></li>
+              <li class="item"><span class="item__name">Cookie noisette</span><span class="item__line"></span><span class="item__price">3,20 €</span><span class="item__desc">Chocolat noir et noisettes torréfiées</span></li>
+              <li class="item"><span class="item__name">Banana bread</span><span class="item__line"></span><span class="item__price">3,80 €</span><span class="item__desc">Moelleux, une pointe de cannelle</span></li>
+              <li class="item"><span class="item__name">Cinnamon roll</span><span class="item__line"></span><span class="item__price">4,20 €</span><span class="item__desc">Brioché, glaçage au fromage frais</span></li>
+              <li class="item item--signature"><span class="item__name">Tarte aux pralines <small>Lyonnaise</small></span><span class="item__line"></span><span class="item__price">4,50 €</span><span class="item__desc">La classique, avec nos pralines roses</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="carte__note">Lait d’avoine sur demande (+0,50 €). Nos cafés en grains sont aussi en vente au comptoir, dès 12 € les 250 g, moulus à la demande.</p>
+      </div>
+    </section>
+
+
+    <!-- ===================================================
+         4. LE MOMENT « WOW » : le grain se torréfie au scroll
+         ✏️ Chaque étape : data-temp = température affichée,
+            data-color = couleur du grain à cette étape.
+         =================================================== -->
+    <section class="roast" id="torrefaction" aria-labelledby="roast-title">
+      <div class="roast__inner">
+        <header class="roast__header">
+          <p class="eyebrow">Dans l’atelier</p>
+          <h2 class="roast__title" id="roast-title">Douze minutes<br>de <em>torréfaction</em>.</h2>
+        </header>
+
+        <div class="roast__stage">
+          <div class="roast__glow" aria-hidden="true"></div>
+
+          <!-- Le grain, dessiné en SVG : deux moitiés qui se séparent à la fin -->
+          <svg class="bean" viewBox="-60 -110 320 420" aria-hidden="true">
+            <defs>
+              <radialGradient id="bean-shine" cx="35%" cy="28%" r="65%">
+                <stop offset="0" stop-color="#fff" stop-opacity=".38"/>
+                <stop offset=".45" stop-color="#fff" stop-opacity=".06"/>
+                <stop offset="1" stop-color="#000" stop-opacity=".28"/>
+              </radialGradient>
+            </defs>
+            <g class="steam" fill="none" stroke-linecap="round">
+              <path d="M70 -10 C55 -35 85 -55 70 -85"/>
+              <path d="M100 -18 C85 -45 115 -65 100 -100"/>
+              <path d="M130 -10 C115 -35 145 -55 130 -85"/>
+            </g>
+            <g class="fragments"></g>
+            <g class="bean__body">
+              <g class="bean__half bean__half--left">
+                <path class="bean__fill" d="M100,30 A78,110 0 0 0 100,250 C120,190 78,150 100,140 C122,130 80,90 100,30 Z" fill="#9FAE7A"/>
+                <path class="bean__shine" d="M100,30 A78,110 0 0 0 100,250 C120,190 78,150 100,140 C122,130 80,90 100,30 Z" fill="url(#bean-shine)"/>
+              </g>
+              <g class="bean__half bean__half--right">
+                <path class="bean__fill" d="M100,30 A78,110 0 0 1 100,250 C120,190 78,150 100,140 C122,130 80,90 100,30 Z" fill="#9FAE7A"/>
+                <path class="bean__shine" d="M100,30 A78,110 0 0 1 100,250 C120,190 78,150 100,140 C122,130 80,90 100,30 Z" fill="url(#bean-shine)"/>
+              </g>
+              <path class="bean__crease" d="M100,34 C80,90 122,130 100,140 C78,150 120,190 100,246" fill="none"/>
+              <g class="bean__cracks" fill="none">
+                <path d="M62,92 L74,104 L70,116"/>
+                <path d="M140,70 L130,86 L138,96"/>
+                <path d="M58,170 L72,176 L66,192"/>
+                <path d="M146,182 L132,190 L140,206"/>
+              </g>
+            </g>
+          </svg>
+
+          <!-- Thermomètre -->
+          <div class="thermo" aria-hidden="true">
+            <div class="thermo__bar"><span class="thermo__fill"></span></div>
+            <p class="thermo__value"><span data-temp-value>20</span><small>°C</small></p>
+          </div>
+        </div>
+
+        <!-- Les étapes (texte lisible par tous, même sans animation) -->
+        <ol class="roast__steps">
+          <li data-temp="20" data-color="#9FAE7A">
+            <span class="step__num">01</span>
+            <h3>Le grain vert</h3>
+            <p>Il arrive d’Éthiopie, dense et sec. Il sent encore le foin et le petit pois.</p>
+          </li>
+          <li data-temp="160" data-color="#D2B86C">
+            <span class="step__num">02</span>
+            <h3>Le séchage</h3>
+            <p>L’humidité s’évapore. Le grain jaunit et prend une odeur de pain frais.</p>
+          </li>
+          <li data-temp="190" data-color="#B07A45">
+            <span class="step__num">03</span>
+            <h3>La réaction de Maillard</h3>
+            <p>Les sucres caramélisent : naissent les notes de noisette et de biscuit.</p>
+          </li>
+          <li data-temp="205" data-color="#7E4B2C">
+            <span class="step__num">04</span>
+            <h3>Le premier crack</h3>
+            <p>Le grain craque comme du pop-corn et gonfle de près de moitié.</p>
+          </li>
+          <li data-temp="212" data-color="#5C3520">
+            <span class="step__num">05</span>
+            <h3>Le développement</h3>
+            <p>On arrête ici, à la seconde près : torréfaction médium, la signature Grain.</p>
+          </li>
+          <li data-temp="212" data-color="#5C3520">
+            <span class="step__num">06</span>
+            <h3>La mouture</h3>
+            <p>Moulu à la minute, devant vous. Il est prêt pour la tasse.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+
+    <!-- ===================================================
+         5. AVIS CLIENTS
+         ⚠️ Avis FICTIFS (site de démonstration). Sur un vrai site, utiliser
+            uniquement de vrais avis, avec l'accord des clients.
+         =================================================== -->
+    <section class="avis" id="avis" aria-labelledby="avis-title">
+      <div class="container avis__header">
+        <p class="eyebrow">Ils en parlent</p>
+        <h2 class="title-xl" id="avis-title">Une tasse,<br><em>et on revient.</em></h2>
+        <div class="rating">
+          <div class="stars" role="img" aria-label="Note moyenne : 4,9 sur 5">
+            <span class="stars__base">★★★★★</span>
+            <span class="stars__fill" aria-hidden="true">★★★★★</span>
+          </div>
+          <p><strong>4,9/5</strong> · 320 avis Google</p>
+        </div>
+      </div>
+
+      <div class="avis__rows">
+        <ul class="avis__row avis__row--1">
+          <li class="review"><blockquote>« Le meilleur flat white de la Presqu’île, et de loin. »</blockquote><p>Camille R.</p></li>
+          <li class="review"><blockquote>« Le barista m’a raconté l’origine de mon filtre pendant qu’il l’infusait. Passionnant. »</blockquote><p>Thomas B.</p></li>
+          <li class="review"><blockquote>« La tarte aux pralines maison mérite le détour à elle seule. »</blockquote><p>Inès M.</p></li>
+          <li class="review"><blockquote>« Un lieu calme et lumineux pour travailler le matin. »</blockquote><p>Julien P.</p></li>
+        </ul>
+        <ul class="avis__row avis__row--2">
+          <li class="review"><blockquote>« J’achète mes grains ici chaque semaine : une fraîcheur incroyable. »</blockquote><p>Sophie L.</p></li>
+          <li class="review"><blockquote>« Le latte sauge &amp; miel, surprenant et délicieux. »</blockquote><p>Mehdi K.</p></li>
+          <li class="review"><blockquote>« Accueil adorable, on se sent attendu. »</blockquote><p>Claire D.</p></li>
+          <li class="review"><blockquote>« Le cold brew parfait pour les étés lyonnais. »</blockquote><p>Antoine V.</p></li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ===================================================
+         6. INFOS PRATIQUES
+         ✏️ HORAIRES : modifie les attributs data-open / data-close (format 24 h).
+            Laisse-les vides pour un jour de fermeture.
+            data-day : 0 = dimanche, 1 = lundi … 6 = samedi.
+            Pense aussi à mettre à jour le JSON-LD dans le <head>.
+         =================================================== -->
+    <section class="infos" id="infos" aria-labelledby="infos-title">
+      <div class="infos__bg" aria-hidden="true"></div>
+      <div class="container infos__grid">
+
+        <div class="infos__main">
+          <p class="eyebrow">Infos pratiques</p>
+          <h2 class="title-xl" id="infos-title">On vous attend<br><em>au comptoir.</em></h2>
+
+          <address class="infos__address">
+            14 rue Royale<br>69001 Lyon
+            <span>Métro Hôtel de Ville (A, C) · 2 min à pied</span>
+          </address>
+
+          <div class="infos__actions">
+            <a class="btn btn--light" href="tel:+33465712345">Appeler le 04 65 71 23 45</a>
+            <a class="btn btn--ghost-light" href="https://www.google.com/maps/search/?api=1&amp;query=14+rue+Royale+69001+Lyon" target="_blank" rel="noopener">Itinéraire Google Maps</a>
+          </div>
+          <p class="infos__mail"><a href="mailto:bonjour@cafe-grain.fr">bonjour@cafe-grain.fr</a></p>
+        </div>
+
+        <div class="infos__hours">
+          <h3>Horaires</h3>
+          <table class="hours" data-hours>
+            <caption class="sr-only">Horaires d’ouverture du café Grain</caption>
+            <tbody>
+              <tr data-day="1" data-open=""      data-close=""><th scope="row">Lundi</th><td>Fermé</td></tr>
+              <tr data-day="2" data-open="08:00" data-close="18:00"><th scope="row">Mardi</th><td>8h – 18h</td></tr>
+              <tr data-day="3" data-open="08:00" data-close="18:00"><th scope="row">Mercredi</th><td>8h – 18h</td></tr>
+              <tr data-day="4" data-open="08:00" data-close="18:00"><th scope="row">Jeudi</th><td>8h – 18h</td></tr>
+              <tr data-day="5" data-open="08:00" data-close="18:00"><th scope="row">Vendredi</th><td>8h – 18h</td></tr>
+              <tr data-day="6" data-open="09:00" data-close="19:00"><th scope="row">Samedi</th><td>9h – 19h</td></tr>
+              <tr data-day="0" data-open="09:00" data-close="15:00"><th scope="row">Dimanche</th><td>9h – 15h</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Carte : Google Maps ne se charge qu'au clic (pas de cookies sans action du visiteur) -->
+        <div class="map" data-map data-map-src="https://www.google.com/maps?q=14+rue+Royale,+69001+Lyon&amp;output=embed">
+          <svg class="map__drawing" viewBox="0 0 400 300" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="300" fill="#E9DFCC"/>
+            <path d="M40,0 C70,80 20,160 60,300" stroke="#8E9C80" stroke-width="26" fill="none" opacity=".55"/>
+            <path d="M360,0 C330,90 380,170 330,300" stroke="#8E9C80" stroke-width="30" fill="none" opacity=".55"/>
+            <g stroke="#fff" stroke-width="7" fill="none" opacity=".9">
+              <path d="M60,60 L340,80"/><path d="M50,150 L350,140"/><path d="M70,230 L330,240"/>
+              <path d="M140,0 L160,300"/><path d="M250,0 L230,300"/>
+            </g>
+            <circle cx="196" cy="112" r="22" fill="#2B1D14" opacity=".12"/>
+            <path d="M196,84 c-12,0 -20,9 -20,20 c0,15 20,30 20,30 s20,-15 20,-30 c0,-11 -8,-20 -20,-20z" fill="#2B1D14"/>
+            <circle cx="196" cy="104" r="7" fill="#F3EBDD"/>
+          </svg>
+          <div class="map__overlay">
+            <p>La carte interactive est fournie par Google Maps, qui peut déposer des cookies.</p>
+            <button class="btn btn--dark" type="button" data-map-load>Afficher la carte</button>
+          </div>
+        </div>
+
+        <figure class="infos__photo">
+          <img src="assets/img/infos-interieur-cafe.webp" width="1020" height="765" loading="lazy"
+               alt="L'intérieur du café Grain baigné de lumière le matin">
+        </figure>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ============ 7. FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer__grid">
+      <p class="footer__tagline">Café de spécialité<br>&amp; torréfacteur, <em>à Lyon.</em></p>
+      <ul class="footer__links">
+        <li><a href="tel:+33465712345">04 65 71 23 45</a></li>
+        <li><a href="mailto:bonjour@cafe-grain.fr">bonjour@cafe-grain.fr</a></li>
+        <!-- Remplacer # par le vrai lien Instagram -->
+        <li><a href="#" rel="noopener">Instagram</a></li>
+      </ul>
+      <ul class="footer__links">
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <li><a href="#top">Retour en haut ↑</a></li>
+      </ul>
+    </div>
+
+    <p class="footer__giant" aria-hidden="true"><span>G</span><span>r</span><span>a</span><span>i</span><span>n</span></p>
+
+    <div class="container footer__bottom">
+      <p>© 2026 Grain · Commerce fictif, site de démonstration.</p>
+      <!-- ✏️ Remplace par ton nom / ton lien portfolio -->
+      <p>Conception &amp; développement : <a href="#">Ton nom</a></p>
+    </div>
+  </footer>
+
+  <!-- Barre d'actions fixe sur mobile -->
+  <nav class="mobile-bar" aria-label="Actions rapides">
+    <a href="tel:+33465712345">Appeler</a>
+    <a href="#carte">La carte</a>
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=14+rue+Royale+69001+Lyon" target="_blank" rel="noopener">Itinéraire</a>
+  </nav>
+
+  <!-- Librairies (CDN) puis notre script -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/SplitText.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.28/dist/lenis.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
