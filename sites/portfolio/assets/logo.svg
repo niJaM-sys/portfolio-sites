@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 398 176" role="img" aria-label="UD, logo d’Ulysse Delourme">
+  <!-- Grille : hauteur 176, épaisseur de trait 48 partout, carré bleu = 48 × 48 posé sur la ligne de base.
+       Espacements : 10 entre le U et le D, 4 entre le D et le carré. -->
+  <g fill="#121212">
+    <!-- U : deux fûts droits + fond en demi-cercle (rayon extérieur 84, intérieur 36) -->
+    <path d="M0 0H48V92A36 36 0 0 0 120 92V0H168V92A84 84 0 0 1 0 92Z"/>
+    <!-- D : fût + barres de 48, panse en demi-cercle (rayon extérieur 88, intérieur 40) -->
+    <path fill-rule="evenodd" d="M178 0H258A88 88 0 0 1 258 176H178ZM226 48V128H258A40 40 0 0 0 258 48Z"/>
+  </g>
+  <rect x="350" y="128" width="48" height="48" fill="#2B3BFF"/>
+</svg>

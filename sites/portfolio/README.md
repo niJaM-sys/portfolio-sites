@@ -21,6 +21,18 @@ Grille stricte, très gros titres, sections numérotées (01 → 06), filets fin
 
 **Polices** : Geist (titres et texte) + Geist Mono (numéros, étiquettes).
 
+## Logo « UD »
+Recréé en vectoriel à partir de la planche `assets/brut/Variations de logo UD minimaliste.png` (modèle en haut à gauche).
+Grille : hauteur 176, épaisseur de trait 48 partout, arcs parfaits ; carré bleu 48 × 48 posé sur la ligne de base. Encre `#121212`, bleu `#2B3BFF`.
+
+| Fichier | Usage |
+|---|---|
+| `assets/logo.svg` | Logo du header (24 px de haut sur mobile, 26 px sur ordinateur) |
+| `assets/favicon.svg` | Favicon : logo sur tuile papier aux coins arrondis |
+| `assets/favicon-32.png` | Favicon de secours (navigateurs sans SVG) |
+| `assets/apple-touch-icon.png` | Icône 180 × 180 quand on ajoute le site à l'écran d'accueil d'un iPhone |
+| `assets/brut/instagram-profil-1080.png` | Photo de profil Instagram 1080 × 1080, fond papier (non versionnée, non mise en ligne) |
+
 ## Structure
 | Section | Contenu | Animation |
 |---|---|---|

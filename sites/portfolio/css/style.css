@@ -187,14 +187,15 @@ html.lenis, html.lenis body { height: auto; }
   height: var(--entete-h);
 }
 .logo {
-  font-weight: 600;
-  font-size: 1.05rem;
-  letter-spacing: -.02em;
-  color: var(--encre);
-  text-decoration: none;
-  white-space: nowrap;
+  display: block;
+  flex-shrink: 0;
+  padding: 6px 0;                 /* zone cliquable plus confortable */
 }
-.logo__point { color: var(--accent); }
+/* Le SVG garde ses proportions : on fixe seulement la hauteur */
+.logo img { display: block; width: auto; height: 24px; }
+@media (min-width: 960px) {
+  .logo img { height: 26px; }
+}
 
 .nav { display: none; }
 .nav ul { display: flex; gap: 2rem; }

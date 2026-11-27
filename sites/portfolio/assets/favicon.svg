@@ -1,5 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#121212"/>
-  <text x="11" y="46" font-family="Geist, Helvetica, Arial, sans-serif" font-size="40" font-weight="600" letter-spacing="-2" fill="#F3F2EE">U</text>
-  <circle cx="47" cy="42" r="5" fill="#2B3BFF"/>
+  <!-- Favicon : logo « UD » sur une tuile couleur papier aux coins arrondis -->
+  <rect width="64" height="64" rx="12" fill="#F3F2EE"/>
+  <g transform="translate(4 19.62) scale(.1407)">
+    <g fill="#121212">
+      <path d="M0 0H48V92A36 36 0 0 0 120 92V0H168V92A84 84 0 0 1 0 92Z"/>
+      <path fill-rule="evenodd" d="M178 0H258A88 88 0 0 1 258 176H178ZM226 48V128H258A40 40 0 0 0 258 48Z"/>
+    </g>
+    <rect x="350" y="128" width="48" height="48" fill="#2B3BFF"/>
+  </g>
 </svg>

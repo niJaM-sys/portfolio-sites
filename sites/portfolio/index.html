@@ -31,7 +31,10 @@
   <meta property="og:image:alt" content="Ulysse Delourme, création de sites web pour commerces et indépendants à Lyon">
   <meta name="twitter:card" content="summary_large_image">
 
+  <!-- Favicons : SVG (navigateurs récents), PNG 32 px (les autres), icône Apple 180 px (écran d’accueil iPhone) -->
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
   <!-- Polices : Geist (titres et texte) + Geist Mono (petits détails : numéros, étiquettes) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -85,7 +88,8 @@
   <header class="entete">
     <div class="conteneur entete__inner">
       <a class="logo" href="#haut" aria-label="Ulysse Delourme, retour en haut">
-        Ulysse Delourme<span class="logo__point" aria-hidden="true">.</span>
+        <!-- Logo « UD » vectoriel (assets/logo.svg) : net à toutes les tailles -->
+        <img src="assets/logo.svg" width="398" height="176" alt="Ulysse Delourme">
       </a>
       <nav class="nav" aria-label="Navigation principale">
         <ul>
