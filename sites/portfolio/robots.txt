@@ -1,0 +1,5 @@
+# Ce site doit être indexé : on autorise tous les moteurs de recherche.
+User-agent: *
+Allow: /
+
+Sitemap: https://ulysse-studio.netlify.app/sitemap.xml

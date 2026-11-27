@@ -1,0 +1,736 @@
+/* ==========================================================================
+   Ulysse Delourme — portfolio
+   Direction : « Grille éditoriale » — fond papier, encre, un seul accent bleu.
+   CSS mobile-first : les styles de base visent le téléphone, puis les
+   @media (min-width: …) ajoutent la mise en page pour les grands écrans.
+   ========================================================================== */
+
+/* ---------- 1. Variables ---------- */
+:root {
+  --papier: #F3F2EE;
+  --papier-2: #E8E6E0;        /* fonds légèrement plus foncés (photo, url) */
+  --encre: #121212;
+  --texte: #2A2A2A;           /* texte courant, un peu plus doux que l'encre */
+  --gris: #5C5C5C;            /* textes secondaires (contraste 6:1 sur papier) */
+  --ligne: rgba(18, 18, 18, .14);
+  --accent: #2B3BFF;          /* bleu outremer : actions et détails, avec parcimonie */
+  --accent-clair: #9AA2FF;    /* version lisible sur fond sombre */
+  --papier-doux: #B9B8B3;     /* texte secondaire sur fond sombre (contraste 9:1) */
+
+  --police: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --police-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --entete-h: 64px;
+  /* Place réservée en bas d'écran pour le badge « Powered by Netlify » (offre gratuite).
+     ✏️ Mettre 0px si le site passe sur un hébergeur ou une offre sans badge. */
+  --badge-space: 64px;
+
+  --rayon: 14px;
+  --ease: cubic-bezier(.2, .7, .1, 1);
+  --section-y: clamp(5rem, 12vw, 9rem);
+}
+
+/* ---------- 2. Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--entete-h) + 1rem); /* les ancres ne passent pas sous l'en-tête */
+}
+@media (prefers-reduced-motion: no-preference) {
+  html:not(.lenis) { scroll-behavior: smooth; }
+}
+
+body {
+  background: var(--papier);
+  color: var(--texte);
+  font-family: var(--police);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+ul, ol { list-style: none; padding: 0; }
+h1, h2, h3 { color: var(--encre); font-weight: 500; line-height: 1.05; letter-spacing: -.035em; }
+button, input, textarea { font: inherit; color: inherit; }
+
+::selection { background: var(--accent); color: #fff; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+[tabindex="-1"]:focus { outline: none; } /* sections qui reçoivent le focus après un clic sur un lien interne */
+
+/* Lenis (scroll fluide) : règles recommandées par la librairie */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* ---------- 3. Utilitaires ---------- */
+.conteneur { width: min(100% - 2.5rem, 1320px); margin-inline: auto; }
+
+.mono {
+  font-family: var(--police-mono);
+  font-size: .75rem;
+  font-weight: 400;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--gris);
+  line-height: 1.4;
+}
+
+.accent { color: var(--accent); }
+
+.visuellement-cache {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.lien-evitement {
+  position: absolute; left: 1rem; top: -100px; z-index: 100;
+  background: var(--encre); color: var(--papier);
+  padding: .75rem 1rem; border-radius: 8px; text-decoration: none;
+}
+.lien-evitement:focus { top: 1rem; }
+
+/* Pastille bleue qui « respire » (statut disponible) */
+.pastille {
+  position: relative;
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+.pastille::after {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: respire 2.4s var(--ease) infinite;
+}
+@keyframes respire {
+  0% { transform: scale(1); opacity: .5; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+/* ---------- 4. Boutons et liens ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  min-height: 52px;                /* cible tactile confortable */
+  padding: .9rem 1.5rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
+}
+.btn--plein { background: var(--accent); color: #fff; }
+.btn--plein:hover { background: var(--encre); }
+.btn--contour { border-color: var(--encre); color: var(--encre); }
+.btn--contour:hover { background: var(--encre); color: var(--papier); }
+.btn--petit { min-height: 40px; padding: .6rem 1.1rem; font-size: .9rem; }
+.btn__fleche { display: inline-block; transition: transform .3s var(--ease); }
+.btn:hover .btn__fleche { transform: translateX(4px); }
+
+.lien-fleche {
+  display: inline-flex;
+  align-items: center;
+  gap: .8rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--encre);
+  text-decoration: none;
+}
+.lien-fleche__icone {
+  display: grid;
+  place-items: center;
+  width: 2.75rem; height: 2.75rem;
+  border: 1px solid var(--encre);
+  border-radius: 50%;
+  transition: background-color .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease), transform .3s var(--ease);
+}
+.lien-fleche:hover .lien-fleche__icone {
+  background: var(--accent); border-color: var(--accent); color: #fff;
+  transform: rotate(45deg);
+}
+
+/* ---------- 5. En-tête ---------- */
+.entete {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(243, 242, 238, .86);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .3s;
+}
+.entete.est-defile { border-bottom-color: var(--ligne); }
+.entete__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: var(--entete-h);
+}
+.logo {
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: -.02em;
+  color: var(--encre);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.logo__point { color: var(--accent); }
+
+.nav { display: none; }
+.nav ul { display: flex; gap: 2rem; }
+.nav a {
+  position: relative;
+  font-size: .95rem;
+  color: var(--texte);
+  text-decoration: none;
+}
+.nav a::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: -4px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .35s var(--ease);
+}
+.nav a:hover::after { transform: scaleX(1); transform-origin: left; }
+
+/* ---------- 6. Hero ---------- */
+.hero { padding: clamp(2.5rem, 7vw, 5rem) 0 clamp(3rem, 7vw, 5rem); }
+
+.hero__statut {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4rem .75rem;
+  color: var(--encre);
+  margin-bottom: clamp(1.75rem, 4vw, 3rem);
+}
+/* Heure de Lyon : sur sa propre ligne sur téléphone, à la suite sur grand écran */
+.hero__heure { flex-basis: 100%; padding-left: calc(8px + .75rem); color: var(--gris); }
+@media (min-width: 700px) {
+  .hero__heure { flex-basis: auto; padding-left: 0; }
+  .hero__heure::before { content: "·"; margin-right: .75rem; }
+}
+
+.hero__titre {
+  font-size: clamp(2.6rem, 1.25rem + 6vw, 7.25rem);
+  font-weight: 500;
+  line-height: .98;
+  letter-spacing: -.045em;
+  max-width: 15ch;
+  text-wrap: balance;
+}
+
+.hero__bas {
+  display: grid;
+  gap: 2rem;
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+}
+.hero__intro {
+  font-size: clamp(1.1rem, 1rem + .5vw, 1.3rem);
+  line-height: 1.5;
+  max-width: 36ch;
+  color: var(--texte);
+}
+.hero__actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.hero__actions .btn { flex: 1 1 auto; }
+
+.hero__faits {
+  display: grid;
+  margin-top: clamp(3rem, 8vw, 6rem);
+  border-top: 1px solid var(--encre);
+}
+.hero__faits > div {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--ligne);
+}
+.hero__faits dt { padding-top: .2rem; }
+.hero__faits dd { color: var(--encre); line-height: 1.45; }
+
+/* ---------- 7. Sections : en-tête commun ---------- */
+.section { padding: var(--section-y) 0 0; }
+.section:last-of-type { padding-bottom: var(--section-y); }
+
+.section__entete {
+  display: grid;
+  gap: 1.25rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--encre);
+  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+}
+.section__num { color: var(--encre); }
+.section__titre {
+  font-size: clamp(2.1rem, 1.2rem + 4vw, 4.5rem);
+  max-width: 16ch;
+  text-wrap: balance;
+}
+.section__intro {
+  margin-top: 1.25rem;
+  max-width: 52ch;
+  color: var(--gris);
+  font-size: 1.05rem;
+}
+
+/* ---------- 8. Projets ---------- */
+.projets { display: grid; gap: clamp(4.5rem, 10vw, 8rem); }
+
+/* Mise en scène : le navigateur à gauche, le téléphone posé sur son coin bas-droit.
+   Le téléphone ne chevauche que les ~3 % de droite de la capture : cette bande correspond
+   à la marge des sites présentés, sans bouton ni texte. Il dépasse ensuite sous le navigateur,
+   d'où le padding-bottom (en %, donc proportionnel à la largeur comme le reste). */
+.projet__media {
+  position: relative;
+  display: block;
+  padding-bottom: calc(24% - 1rem);
+  text-decoration: none;
+}
+
+/* Cadre « fenêtre de navigateur » */
+.navigateur {
+  width: 80%;
+  overflow: hidden;
+  border: 1px solid var(--ligne);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(18, 18, 18, .04), 0 24px 60px -24px rgba(18, 18, 18, .25);
+}
+.navigateur__barre {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  height: 28px;
+  padding: 0 .65rem;
+  border-bottom: 1px solid var(--ligne);
+  background: #FAFAF8;
+}
+.navigateur__points { display: flex; gap: 5px; }
+.navigateur__points i { width: 7px; height: 7px; border-radius: 50%; background: #D4D2CC; }
+.navigateur__url {
+  flex: 1;
+  max-width: 280px;
+  margin-inline: auto;
+  padding: .15rem .6rem;
+  border-radius: 6px;
+  background: var(--papier-2);
+  font-family: var(--police-mono);
+  font-size: .62rem;
+  color: var(--gris);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* La capture (1440×900) est affichée EN ENTIER : largeur 100 %, hauteur proportionnelle,
+   jamais recadrée ni zoomée. */
+.navigateur__ecran { background: var(--papier-2); }
+.navigateur__ecran img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: top;
+}
+
+/* Cadre « téléphone » */
+.telephone {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 23%;
+  overflow: hidden;
+  border: 4px solid var(--encre);
+  border-radius: clamp(14px, 3.4vw, 34px);
+  background: var(--encre);
+  box-shadow: 0 30px 60px -20px rgba(18, 18, 18, .45);
+  transition: transform .6s var(--ease);
+}
+.telephone img { width: 100%; }
+
+.projet__media:hover .telephone { transform: translateY(-8px); }
+
+.projet__infos {
+  display: grid;
+  gap: 1.75rem;
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--ligne);
+}
+.projet__num { color: var(--accent); margin-bottom: .5rem; }
+.projet__nom { font-size: clamp(2.1rem, 1.5rem + 2.5vw, 3.5rem); }
+.projet__type { margin-top: .5rem; color: var(--encre); }
+.projet__etiquette { margin-top: .9rem; }
+
+.projet__sous-titre { margin-bottom: .5rem; }
+.projet__apports li {
+  position: relative;
+  padding: .7rem 0 .7rem 1.6rem;
+  border-bottom: 1px solid var(--ligne);
+  line-height: 1.5;
+}
+.projet__apports li::before {
+  content: "—";
+  position: absolute; left: 0;
+  color: var(--accent);
+}
+.projet__infos .lien-fleche { justify-self: start; }
+
+/* ---------- 9. Offres ---------- */
+.offres { display: grid; }
+.offre {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0 2.5rem;
+  border-top: 1px solid var(--ligne);
+}
+.offre:first-child { border-top: 0; padding-top: 0; }
+.offre__num { color: var(--accent); }
+.offre__titre { margin-top: 1rem; font-size: clamp(1.7rem, 1.3rem + 1.5vw, 2.3rem); }
+.offre__texte { margin-top: 1rem; }
+.offre__liste { margin: 1.5rem 0 2rem; }
+.offre__liste li {
+  position: relative;
+  padding: .5rem 0 .5rem 1.5rem;
+  font-size: .97rem;
+  border-bottom: 1px dashed var(--ligne);
+}
+.offre__liste li::before {
+  content: "+";
+  position: absolute; left: 0;
+  font-family: var(--police-mono);
+  color: var(--accent);
+}
+.offre__prix {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  margin-top: auto;
+  color: var(--encre);
+  font-size: .85rem;
+}
+.offre__prix::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+/* ---------- 10. Méthode (étapes) ---------- */
+.etapes { counter-reset: none; border-bottom: 1px solid var(--ligne); }
+.etape {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: .4rem 1rem;
+  padding: 1.6rem 0;
+  border-top: 1px solid var(--ligne);
+}
+.etape__num {
+  grid-row: span 2;
+  padding-top: .45rem;
+  transition: color .4s var(--ease);
+}
+.etape__titre {
+  font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem);
+  transition: transform .5s var(--ease);
+}
+.etape__texte { max-width: 56ch; }
+.etape__texte strong { color: var(--encre); font-weight: 600; }
+/* Étape en cours de lecture (ajoutée par le JavaScript au scroll) */
+.etape.est-active .etape__num { color: var(--accent); }
+
+/* ---------- 11. À propos ---------- */
+.apropos { display: grid; gap: 2.5rem; }
+
+.apropos__photo {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--rayon);
+  object-fit: cover;
+  background: #161A17;   /* teinte du fond de la photo, visible le temps du chargement */
+}
+
+.apropos__texte p + p { margin-top: 1.1rem; }
+.apropos__accroche {
+  margin-bottom: 1.6rem;
+  font-size: clamp(1.4rem, 1.1rem + 1.3vw, 2rem);
+  line-height: 1.25;
+  letter-spacing: -.02em;
+  color: var(--encre);
+}
+.apropos__faits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: 2rem;
+}
+.apropos__faits li {
+  padding: .45rem .85rem;
+  border: 1px solid var(--ligne);
+  border-radius: 999px;
+  color: var(--encre);
+}
+
+/* ---------- 12. FAQ ---------- */
+.faq { border-bottom: 1px solid var(--ligne); }
+.faq__item { border-top: 1px solid var(--ligne); }
+.faq__item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 1.35rem 0;
+  font-size: clamp(1.1rem, 1rem + .6vw, 1.4rem);
+  font-weight: 500;
+  letter-spacing: -.015em;
+  color: var(--encre);
+  cursor: pointer;
+  list-style: none;
+}
+.faq__item summary::-webkit-details-marker { display: none; }
+.faq__item summary::after {
+  content: "+";
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 2.25rem; height: 2.25rem;
+  border: 1px solid var(--ligne);
+  border-radius: 50%;
+  font-family: var(--police-mono);
+  font-size: 1.1rem;
+  font-weight: 400;
+  transition: transform .4s var(--ease), background-color .3s, color .3s, border-color .3s;
+}
+.faq__item summary:hover::after { border-color: var(--encre); }
+.faq__item[open] summary::after {
+  transform: rotate(45deg);
+  background: var(--encre); border-color: var(--encre); color: var(--papier);
+}
+.faq__reponse { padding: 0 3.5rem 1.6rem 0; }
+.faq__reponse p { max-width: 62ch; }
+
+/* Ouverture en douceur, pour les navigateurs qui savent animer vers « auto » */
+@supports (interpolate-size: allow-keywords) {
+  @media (prefers-reduced-motion: no-preference) {
+    .faq { interpolate-size: allow-keywords; }
+    .faq__item::details-content {
+      block-size: 0;
+      overflow: hidden;
+      transition: block-size .45s var(--ease), content-visibility .45s allow-discrete;
+    }
+    .faq__item[open]::details-content { block-size: auto; }
+  }
+}
+
+/* ---------- 13. Contact (fond sombre) ---------- */
+.contact {
+  margin-top: var(--section-y);
+  padding-bottom: var(--section-y);
+  background: var(--encre);
+  color: var(--papier);
+}
+.contact :focus-visible { outline-color: var(--accent-clair); }
+.contact .section__entete { border-top-color: rgba(243, 242, 238, .35); }
+.contact .section__num { color: var(--papier); }
+.contact h2 { color: var(--papier); }
+.contact__titre { font-size: clamp(2.6rem, 1rem + 7vw, 6.5rem); max-width: 12ch; }
+
+.contact__grille { display: grid; gap: 3.5rem; }
+.contact__intro { font-size: clamp(1.15rem, 1rem + .6vw, 1.4rem); line-height: 1.45; max-width: 30ch; }
+.contact__liens { margin-top: 2.25rem; }
+.contact__liens li {
+  display: grid;
+  gap: .2rem;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(243, 242, 238, .18);
+  font-size: 1.1rem;
+}
+.contact__liens li:last-child { border-bottom: 1px solid rgba(243, 242, 238, .18); }
+.contact__liens .mono { color: var(--papier-doux); }
+.contact__liens a {
+  text-decoration: underline;
+  text-decoration-color: rgba(243, 242, 238, .35);
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+  transition: text-decoration-color .3s, color .3s;
+}
+.contact__liens a:hover { color: var(--accent-clair); text-decoration-color: currentColor; }
+
+/* Formulaire */
+.formulaire { display: grid; gap: 1.75rem; }
+.champ { display: grid; gap: .35rem; }
+.champ label { font-size: .9rem; color: var(--papier-doux); }
+.champ input,
+.champ textarea {
+  width: 100%;
+  padding: .7rem 0;
+  border: 0;
+  border-bottom: 1px solid rgba(243, 242, 238, .4);
+  border-radius: 0;
+  background: transparent;
+  color: var(--papier);
+  font-size: 1.1rem;             /* ≥ 16 px : évite le zoom automatique sur iPhone */
+  transition: border-color .3s, box-shadow .3s;
+}
+.champ textarea { resize: vertical; min-height: 8rem; line-height: 1.5; }
+.champ input::placeholder,
+.champ textarea::placeholder { color: rgba(243, 242, 238, .45); }
+.champ input:focus-visible,
+.champ textarea:focus-visible {
+  outline: none;
+  border-bottom-color: var(--accent-clair);
+  box-shadow: 0 1px 0 var(--accent-clair);
+}
+.champ input:user-invalid,
+.champ textarea:user-invalid { border-bottom-color: #FF9C8C; }
+
+.formulaire__bas { display: grid; gap: 1.5rem; }
+.formulaire__rgpd { font-size: .85rem; line-height: 1.5; color: var(--papier-doux); max-width: 46ch; }
+.formulaire__rgpd a { color: var(--papier); text-underline-offset: 3px; }
+.contact .btn--plein:hover { background: var(--papier); color: var(--encre); }
+.btn[disabled] { opacity: .6; cursor: wait; }
+
+.formulaire__statut:empty { display: none; }
+.formulaire__statut {
+  padding: 1rem 1.1rem;
+  border-radius: 10px;
+  font-size: 1.02rem;
+  line-height: 1.5;
+}
+.formulaire__statut.est-succes { background: rgba(154, 162, 255, .14); border: 1px solid var(--accent-clair); }
+.formulaire__statut.est-erreur { background: rgba(255, 156, 140, .12); border: 1px solid #FF9C8C; }
+.formulaire__statut a { color: var(--papier); }
+
+/* ---------- 14. Pied de page ---------- */
+.pied {
+  overflow: hidden;
+  background: var(--encre);
+  color: var(--papier-doux);
+}
+.pied__nom {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(243, 242, 238, .18);
+  font-size: clamp(2.2rem, 11vw, 12rem);  /* réglé pour occuper presque toute la largeur, sans déborder à 320 px */
+  font-weight: 500;
+  letter-spacing: -.055em;
+  line-height: .95;
+  color: var(--papier);
+  white-space: nowrap;
+}
+.pied__nom .accent { color: var(--accent-clair); }
+.pied__bas {
+  display: grid;
+  gap: 1rem;
+  padding: 2rem 0 calc(2rem + var(--badge-space));   /* + badge Netlify */
+  font-size: .9rem;
+}
+.pied__liens { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; }
+.pied a { color: var(--papier); text-underline-offset: 3px; }
+.pied a:hover { color: var(--accent-clair); }
+.pied :focus-visible { outline-color: var(--accent-clair); }
+
+/* ==========================================================================
+   15. Tablette et plus
+   ========================================================================== */
+@media (min-width: 700px) {
+  .hero__actions .btn { flex: 0 0 auto; }
+  .formulaire { grid-template-columns: 1fr 1fr; column-gap: 1.5rem; }
+  .champ--large, .formulaire__bas, .formulaire__statut { grid-column: 1 / -1; }
+  .formulaire__bas { grid-template-columns: 1fr auto; align-items: end; }
+  .telephone { border-width: 6px; }
+}
+
+/* ==========================================================================
+   16. Ordinateur
+   ========================================================================== */
+@media (min-width: 960px) {
+  :root { --entete-h: 76px; }
+  .nav { display: block; }
+
+  .hero__bas { grid-template-columns: 1fr auto; align-items: end; gap: 3rem; }
+  .hero__faits { grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--ligne); }
+  .hero__faits > div {
+    grid-template-columns: 1fr;
+    gap: .6rem;
+    padding: 1.25rem 2rem 1.5rem 0;
+    border-bottom: 0;
+  }
+  .hero__faits > div + div { padding-left: 2rem; border-left: 1px solid var(--ligne); }
+
+  /* En-têtes de section : numéro à gauche, titre à droite (grille 1/3 – 2/3) */
+  .section__entete { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 2rem; }
+  .faq { margin-left: calc((100% - 2rem) / 3 + 2rem); }
+
+  .projet__media { padding-bottom: calc(8.5% - .5rem); }
+  .navigateur { width: 84%; border-radius: 14px; }
+  .navigateur__barre { height: 38px; padding: 0 1rem; }
+  .navigateur__points { gap: 7px; }
+  .navigateur__points i { width: 10px; height: 10px; }
+  .navigateur__url { font-size: .75rem; padding: .25rem .8rem; }
+  .telephone { width: 18.5%; border-width: 8px; }
+
+  .projet__infos { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) auto; gap: 3rem; align-items: start; }
+  .projet__infos .lien-fleche { justify-self: end; }
+
+  .offres { grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ligne); }
+  .offre { padding: 2rem 2rem 0; border-top: 0; border-left: 1px solid var(--ligne); }
+  .offre:first-child { padding: 2rem 2rem 0 0; border-left: 0; }
+
+  /* Étapes : numéro | titre | texte, alignés sur la grille 1/3 – 2/3 */
+  .etape {
+    grid-template-columns: minmax(0, 1fr) minmax(0, .85fr) minmax(0, 1.15fr);
+    gap: 2rem;
+    align-items: baseline;
+    padding: 2.25rem 0;
+  }
+  .etape__num { grid-row: auto; padding-top: 0; }
+  .etape.est-active .etape__titre { transform: translateX(.5rem); }
+
+  .apropos { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 2rem; align-items: start; }
+  .apropos__photo { max-width: none; }
+  .apropos__texte { max-width: 44rem; }
+
+  .contact__grille { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 2rem; }
+  .contact__direct { padding-right: 2rem; }
+
+  .pied__bas { grid-template-columns: 1fr auto 1fr; align-items: center; }
+  .pied__bas > :last-child { justify-self: end; }
+}
+
+/* ==========================================================================
+   17. États d'animation
+   Avant que le JavaScript prenne la main, les éléments du hero sont masqués
+   pour éviter un « flash ». S'il n'y a pas d'animation (réglage système,
+   librairie bloquée…), tout reste affiché normalement.
+   ========================================================================== */
+.js .hero__titre { visibility: hidden; }
+.js [data-hero] { opacity: 0; }
+.sans-anim .hero__titre { visibility: visible; }
+.sans-anim [data-hero] { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .hero__titre { visibility: visible; }
+  .js [data-hero] { opacity: 1; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}

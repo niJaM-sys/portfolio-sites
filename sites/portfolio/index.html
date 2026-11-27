@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ===================================================================
+       SEO
+       ✏️ ADRESSE DU SITE : « ulysse-studio.netlify.app » est provisoire.
+       Si tu choisis un autre nom (ou un nom de domaine), fais un
+       rechercher / remplacer dans TOUT le dossier : index.html,
+       mentions-legales.html, robots.txt et sitemap.xml.
+       =================================================================== -->
+  <title>Ulysse Delourme — Création de sites web pour commerces et indépendants à Lyon</title>
+  <meta name="description" content="Je crée des sites web modernes, rapides et pensés pour le téléphone pour les commerces et indépendants : restaurants, cafés, salons, artisans, boutiques. Basé à Lyon, devis gratuit.">
+  <meta name="theme-color" content="#F3F2EE">
+  <meta name="author" content="Ulysse Delourme">
+  <!-- Ce site DOIT être trouvé sur Google : pas de « noindex » ici (contrairement aux sites d'exemple). -->
+  <link rel="canonical" href="https://ulysse-studio.netlify.app/">
+
+  <!-- Open Graph : l'aperçu affiché quand on partage le lien (SMS, WhatsApp, LinkedIn, Facebook…) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Ulysse Delourme">
+  <meta property="og:title" content="Ulysse Delourme — Sites web pour commerces et indépendants">
+  <meta property="og:description" content="Des sites modernes, rapides et pensés pour le téléphone, qui donnent envie de venir chez vous. Basé à Lyon.">
+  <meta property="og:url" content="https://ulysse-studio.netlify.app/">
+  <meta property="og:image" content="https://ulysse-studio.netlify.app/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Ulysse Delourme, création de sites web pour commerces et indépendants à Lyon">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Polices : Geist (titres et texte) + Geist Mono (petits détails : numéros, étiquettes) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..500&display=swap">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Indique au CSS que JavaScript est actif. Filet de sécurité : si les animations
+       ne démarrent pas dans les 4 secondes (librairie bloquée, réseau lent…),
+       on affiche tout le contenu sans animation. -->
+  <script>
+    document.documentElement.classList.add('js');
+    setTimeout(function () {
+      if (!document.documentElement.classList.contains('anim-ok')) document.documentElement.classList.add('sans-anim');
+    }, 4000);
+  </script>
+
+  <!-- Données structurées pour Google : qui je suis, ce que je fais, où. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Ulysse Delourme — Création de sites web",
+    "description": "Création de sites web modernes pour les commerces et indépendants : site vitrine, refonte de site existant, maintenance mensuelle.",
+    "url": "https://ulysse-studio.netlify.app/",
+    "image": "https://ulysse-studio.netlify.app/assets/img/og-image.jpg",
+    "email": "ulyssepro.web@outlook.fr",
+    "priceRange": "Sur devis",
+    "address": { "@type": "PostalAddress", "addressLocality": "Lyon", "addressRegion": "Auvergne-Rhône-Alpes", "addressCountry": "FR" },
+    "areaServed": [{ "@type": "City", "name": "Lyon" }, { "@type": "Country", "name": "France" }],
+    "founder": { "@type": "Person", "name": "Ulysse Delourme", "jobTitle": "Créateur de sites web" },
+    "sameAs": ["https://www.instagram.com/ulysse_studiooff/"],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Site vitrine sur mesure" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Refonte de site existant" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Maintenance mensuelle" } }
+      ]
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+  <!-- ============ EN-TÊTE ============ -->
+  <header class="entete">
+    <div class="conteneur entete__inner">
+      <a class="logo" href="#haut" aria-label="Ulysse Delourme, retour en haut">
+        Ulysse Delourme<span class="logo__point" aria-hidden="true">.</span>
+      </a>
+      <nav class="nav" aria-label="Navigation principale">
+        <ul>
+          <li><a href="#projets">Projets</a></li>
+          <li><a href="#offres">Offres</a></li>
+          <li><a href="#methode">Méthode</a></li>
+          <li><a href="#a-propos">À propos</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn--plein btn--petit" href="#contact">Me contacter</a>
+    </div>
+  </header>
+
+  <main id="contenu">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="haut" aria-labelledby="hero-titre">
+      <div class="conteneur">
+        <p class="hero__statut mono" data-hero>
+          <span class="pastille" aria-hidden="true"></span>
+          <!-- ✏️ À changer quand ton planning est plein (ex. « Prochaines disponibilités : février ») -->
+          Disponible pour de nouveaux projets
+          <span class="hero__heure" data-heure-lyon hidden></span>
+        </p>
+
+        <h1 class="hero__titre" id="hero-titre">
+          Je crée des sites web pour les commerces et les indépendants<span class="accent">.</span>
+        </h1>
+
+        <div class="hero__bas" data-hero>
+          <p class="hero__intro">
+            Des sites modernes, rapides et pensés pour le téléphone, qui donnent envie
+            de venir chez vous. Vous vous occupez de votre métier, je m’occupe de votre vitrine en ligne.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--plein" href="#contact">Me contacter <span class="btn__fleche" aria-hidden="true">→</span></a>
+            <a class="btn btn--contour" href="#projets">Voir mes projets</a>
+          </div>
+        </div>
+
+        <dl class="hero__faits" data-hero>
+          <div>
+            <dt class="mono">Pour qui</dt>
+            <dd>Restaurants, cafés, salons, artisans, boutiques, indépendants.</dd>
+          </div>
+          <div>
+            <dt class="mono">Où</dt>
+            <dd>Basé à Lyon. Rendez-vous sur place ou en visio, partout en France.</dd>
+          </div>
+          <div>
+            <dt class="mono">Comment</dt>
+            <dd>Sur mesure, sans template, et expliqué sans jargon.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ 01 · PROJETS ============ -->
+    <section class="section" id="projets" aria-labelledby="projets-titre">
+      <div class="conteneur">
+        <header class="section__entete">
+          <p class="section__num mono">01 — Projets</p>
+          <div>
+            <h2 class="section__titre" id="projets-titre">Ce que je fais, en vrai.</h2>
+            <p class="section__intro">
+              Deux sites conçus de A à Z pour montrer ce que je peux faire pour votre commerce.
+              Cliquez, testez-les sur votre téléphone : ils sont en ligne.
+            </p>
+          </div>
+        </header>
+
+        <div class="projets">
+          <!-- ===============================================================
+               ✏️ AJOUTER UN PROJET
+               1. Copie un bloc <article class="projet"> … </article> complet.
+               2. Change : le lien (3 fois), le numéro, le nom, le type de commerce,
+                  les 3 apports, l'adresse affichée dans la barre du navigateur.
+               3. Captures : 3 fichiers WebP dans assets/img/ :
+                  nom-desktop-1440.webp (1440×900), nom-desktop-900.webp (900×563)
+                  et nom-mobile.webp (600×1298). Voir le README pour les créer.
+               4. Projet client réel : supprime la ligne <p class="projet__etiquette">,
+                  ou remplace-la par « Client · 2027 ».
+               Mets les projets clients en premier : ils comptent plus que les exemples.
+               =============================================================== -->
+
+          <!-- ===== Projet : Grain ===== -->
+          <article class="projet">
+            <a class="projet__media" href="https://grain-cafe-lyon.netlify.app" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+              <div class="navigateur">
+                <div class="navigateur__barre">
+                  <span class="navigateur__points"><i></i><i></i><i></i></span>
+                  <span class="navigateur__url">grain-cafe-lyon.netlify.app</span>
+                </div>
+                <div class="navigateur__ecran">
+                  <img src="assets/img/grain-desktop-1440.webp"
+                       srcset="assets/img/grain-desktop-900.webp 900w, assets/img/grain-desktop-1440.webp 1440w"
+                       sizes="(min-width: 1400px) 1110px, (min-width: 960px) 78vw, 72vw"
+                       width="1440" height="900" loading="lazy" decoding="async"
+                       alt="Page d’accueil du site Grain sur ordinateur : grand titre « Grain » crème sur fond espresso et tasse de café.">
+                </div>
+              </div>
+              <div class="telephone">
+                <img src="assets/img/grain-mobile.webp" width="600" height="1298" loading="lazy" decoding="async"
+                     alt="Le site Grain sur téléphone, avec la barre Appeler, La carte et Itinéraire.">
+              </div>
+            </a>
+            <div class="projet__infos">
+              <div class="projet__identite">
+                <p class="projet__num mono">01</p>
+                <h3 class="projet__nom">Grain</h3>
+                <p class="projet__type">Café de spécialité &amp; torréfacteur · Lyon</p>
+                <p class="projet__etiquette mono">Projet d’exemple · commerce fictif</p>
+              </div>
+              <div class="projet__apports">
+                <p class="mono projet__sous-titre">Ce que le site apporte</p>
+                <ul>
+                  <li>Une ambiance premium qui raconte le café, du grain à la tasse, au fil du scroll.</li>
+                  <li>Appeler, voir la carte ou lancer l’itinéraire : un seul geste sur téléphone.</li>
+                  <li>« Ouvert / Fermé » affiché en direct à partir des horaires.</li>
+                </ul>
+              </div>
+              <a class="lien-fleche" href="https://grain-cafe-lyon.netlify.app" target="_blank" rel="noopener">
+                Voir le site<span class="visuellement-cache"> Grain (nouvel onglet)</span> <span class="lien-fleche__icone" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- ===== Projet : Ciseaux & Cie ===== -->
+          <article class="projet">
+            <a class="projet__media" href="https://ciseaux-et-cie-lyon.netlify.app" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+              <div class="navigateur">
+                <div class="navigateur__barre">
+                  <span class="navigateur__points"><i></i><i></i><i></i></span>
+                  <span class="navigateur__url">ciseaux-et-cie-lyon.netlify.app</span>
+                </div>
+                <div class="navigateur__ecran">
+                  <img src="assets/img/ciseaux-desktop-1440.webp"
+                       srcset="assets/img/ciseaux-desktop-900.webp 900w, assets/img/ciseaux-desktop-1440.webp 1440w"
+                       sizes="(min-width: 1400px) 1110px, (min-width: 960px) 78vw, 72vw"
+                       width="1440" height="900" loading="lazy" decoding="async"
+                       alt="Page d’accueil du site Ciseaux & Cie sur ordinateur : titre « Ça coupe, ça rase, ça repart heureux » et photos du salon.">
+                </div>
+              </div>
+              <div class="telephone">
+                <img src="assets/img/ciseaux-mobile.webp" width="600" height="1298" loading="lazy" decoding="async"
+                     alt="Le site Ciseaux & Cie sur téléphone, avec la barre Réserver toujours visible en bas de l’écran.">
+              </div>
+            </a>
+            <div class="projet__infos">
+              <div class="projet__identite">
+                <p class="projet__num mono">02</p>
+                <h3 class="projet__nom">Ciseaux &amp; Cie</h3>
+                <p class="projet__type">Salon de coiffure &amp; barbier · Lyon</p>
+                <p class="projet__etiquette mono">Projet d’exemple · commerce fictif</p>
+              </div>
+              <div class="projet__apports">
+                <p class="mono projet__sous-titre">Ce que le site apporte</p>
+                <ul>
+                  <li>Une réservation en ligne en quelques étapes : prestation, coiffeur, créneau.</li>
+                  <li>Des prix affichés clairement, sans surprise pour le client.</li>
+                  <li>Un bouton « Réserver » toujours à portée de pouce sur téléphone.</li>
+                </ul>
+              </div>
+              <a class="lien-fleche" href="https://ciseaux-et-cie-lyon.netlify.app" target="_blank" rel="noopener">
+                Voir le site<span class="visuellement-cache"> Ciseaux &amp; Cie (nouvel onglet)</span> <span class="lien-fleche__icone" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 02 · OFFRES ============ -->
+    <section class="section" id="offres" aria-labelledby="offres-titre">
+      <div class="conteneur">
+        <header class="section__entete">
+          <p class="section__num mono">02 — Ce que je propose</p>
+          <div>
+            <h2 class="section__titre" id="offres-titre">Trois façons de travailler ensemble.</h2>
+            <p class="section__intro">
+              Chaque commerce est différent : je vous fais un devis clair et détaillé après un premier échange, gratuit et sans engagement.
+            </p>
+          </div>
+        </header>
+
+        <!-- ✏️ Pour modifier une offre : son titre, sa phrase et sa liste « inclus ». -->
+        <div class="offres">
+          <article class="offre">
+            <p class="offre__num mono">A</p>
+            <h3 class="offre__titre">Site vitrine</h3>
+            <p class="offre__texte">
+              Un site sur mesure qui présente votre commerce, rassure vos clients et leur donne envie de venir, d’appeler ou de réserver.
+            </p>
+            <ul class="offre__liste">
+              <li>Design unique, à votre image</li>
+              <li>Pensé d’abord pour le téléphone</li>
+              <li>Adresse, horaires et bouton d’action visibles tout de suite</li>
+              <li>Référencement local sur Google</li>
+              <li>Mise en ligne et nom de domaine</li>
+            </ul>
+            <p class="offre__prix mono">Sur devis</p>
+          </article>
+
+          <article class="offre">
+            <p class="offre__num mono">B</p>
+            <h3 class="offre__titre">Refonte de site</h3>
+            <p class="offre__texte">
+              Votre site existe mais il est daté, lent ou illisible sur téléphone ? Je le remets à neuf en gardant ce qui fonctionne.
+            </p>
+            <ul class="offre__liste">
+              <li>Analyse de votre site actuel</li>
+              <li>Nouveau design et contenus remis au propre</li>
+              <li>Site plus rapide et adapté au mobile</li>
+              <li>Vos anciennes adresses redirigées, pour garder votre place sur Google</li>
+            </ul>
+            <p class="offre__prix mono">Sur devis</p>
+          </article>
+
+          <article class="offre">
+            <p class="offre__num mono">C</p>
+            <h3 class="offre__titre">Maintenance mensuelle</h3>
+            <p class="offre__texte">
+              Vous n’y pensez plus : je garde votre site à jour, en ligne et rapide, et je fais les modifications pour vous.
+            </p>
+            <ul class="offre__liste">
+              <li>Horaires, menu, prix, photos mis à jour sur simple message</li>
+              <li>Vérifications régulières et sauvegardes</li>
+              <li>Un interlocuteur qui connaît votre site</li>
+            </ul>
+            <p class="offre__prix mono">Sur devis</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 03 · MÉTHODE ============ -->
+    <section class="section" id="methode" aria-labelledby="methode-titre">
+      <div class="conteneur">
+        <header class="section__entete">
+          <p class="section__num mono">03 — Comment ça se passe</p>
+          <div>
+            <h2 class="section__titre" id="methode-titre">Simple, du premier message à la mise en ligne.</h2>
+            <p class="section__intro">
+              Pas de jargon, pas de surprise : à chaque étape, vous savez où on en est et ce qui vient ensuite.
+            </p>
+          </div>
+        </header>
+
+        <ol class="etapes">
+          <li class="etape">
+            <p class="etape__num mono">01</p>
+            <h3 class="etape__titre">Échange</h3>
+            <p class="etape__texte">
+              On discute de votre commerce, de vos clients et de ce que vous attendez du site. Autour d’un café à Lyon, par téléphone ou en visio. Gratuit et sans engagement.
+            </p>
+          </li>
+          <li class="etape">
+            <p class="etape__num mono">02</p>
+            <h3 class="etape__titre">Proposition</h3>
+            <p class="etape__texte">
+              Je vous envoie une proposition claire : l’ambiance, les pages, le délai et le prix.
+              <!-- ✏️ Adapte cette phrase à tes conditions (pourcentage de l'acompte, moment du solde). -->
+              <strong>Un acompte à la signature lance le projet</strong>, le solde est réglé à la mise en ligne.
+            </p>
+          </li>
+          <li class="etape">
+            <p class="etape__num mono">03</p>
+            <h3 class="etape__titre">Allers-retours</h3>
+            <p class="etape__texte">
+              Je construis le site et vous le montre au fur et à mesure. Vous donnez votre avis, j’ajuste jusqu’à ce qu’il vous ressemble vraiment.
+            </p>
+          </li>
+          <li class="etape">
+            <p class="etape__num mono">04</p>
+            <h3 class="etape__titre">Mise en ligne</h3>
+            <p class="etape__texte">
+              Nom de domaine, hébergement, fiche Google : je m’occupe de toute la partie technique. Vous, vous partagez le lien.
+            </p>
+          </li>
+          <li class="etape">
+            <p class="etape__num mono">05</p>
+            <h3 class="etape__titre">Suivi</h3>
+            <p class="etape__texte">
+              Je reste joignable après la mise en ligne. Une question, un changement d’horaires ? Un message suffit.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ 04 · À PROPOS ============ -->
+    <section class="section" id="a-propos" aria-labelledby="a-propos-titre">
+      <div class="conteneur">
+        <header class="section__entete">
+          <p class="section__num mono">04 — À propos</p>
+          <div>
+            <h2 class="section__titre" id="a-propos-titre">Moi, c’est Ulysse.</h2>
+          </div>
+        </header>
+
+        <div class="apropos">
+          <!-- 📷 Portrait 4:5, recadré du haut de la poitrine à la tête (original : assets/brut/ULYSSE.jpg).
+               Deux tailles : le navigateur choisit la plus légère qui reste nette sur l'écran. -->
+          <img class="apropos__photo"
+               src="assets/img/photo-ulysse.webp"
+               srcset="assets/img/photo-ulysse-480.webp 480w, assets/img/photo-ulysse.webp 800w"
+               sizes="(min-width: 960px) 30vw, (min-width: 520px) 420px, 90vw"
+               width="800" height="1000" loading="lazy" decoding="async"
+               alt="Portrait d’Ulysse Delourme, créateur de sites web à Lyon, en veste sombre et chemise bleu clair">
+
+          <div class="apropos__texte">
+            <!-- ✏️ Ton texte de présentation : garde-le court, à la première personne. -->
+            <p class="apropos__accroche">
+              Je crée des sites web depuis Lyon pour celles et ceux qui font vivre nos rues :
+              cafés, salons, ateliers, boutiques.
+            </p>
+            <p>
+              Beaucoup d’excellents commerces ont un site qui ne leur ressemble pas, ou pas de site du tout.
+              Mon travail, c’est de traduire ce qui rend votre lieu unique en une page claire,
+              belle et efficace, que vos clients consultent en quelques secondes sur leur téléphone.
+            </p>
+            <p>
+              Je travaille seul : vous avez toujours affaire à la même personne, du premier échange
+              au suivi. J’explique mes choix simplement, je réponds vite, et je ne vous vends rien
+              dont vous n’avez pas besoin.
+            </p>
+            <ul class="apropos__faits mono">
+              <li>Basé à Lyon</li>
+              <li>Un seul interlocuteur</li>
+              <li>Site 100 % à vous</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 05 · FAQ ============ -->
+    <section class="section" id="faq" aria-labelledby="faq-titre">
+      <div class="conteneur">
+        <header class="section__entete">
+          <p class="section__num mono">05 — Questions fréquentes</p>
+          <div>
+            <h2 class="section__titre" id="faq-titre">Vous vous demandez peut-être…</h2>
+          </div>
+        </header>
+
+        <!-- ✏️ Une question = un bloc <details>. Le premier est ouvert par défaut (attribut « open »). -->
+        <div class="faq">
+          <details class="faq__item" open>
+            <summary>Combien de temps faut-il pour créer mon site ?</summary>
+            <div class="faq__reponse">
+              <!-- ✏️ Ajuste ces délais à ta réalité -->
+              <p>En général, deux à quatre semaines pour un site vitrine, selon le nombre de pages et la rapidité de nos allers-retours. Je vous donne un délai précis dans la proposition, et je m’y tiens.</p>
+            </div>
+          </details>
+
+          <details class="faq__item">
+            <summary>Combien ça coûte ?</summary>
+            <div class="faq__reponse">
+              <p>Chaque commerce a des besoins différents, donc chaque projet a son prix. Après un premier échange, je vous envoie un devis ferme et détaillé, sans frais cachés. Le devis est gratuit et ne vous engage à rien.</p>
+            </div>
+          </details>
+
+          <details class="faq__item">
+            <summary>Est-ce que j’aurai mon propre nom de domaine ?</summary>
+            <div class="faq__reponse">
+              <p>Oui. Votre site aura sa propre adresse, du type <em>votre-commerce.fr</em>, enregistrée à votre nom : elle vous appartient. Je m’occupe de la réserver et de tout configurer. Comptez en général une dizaine d’euros par an pour le nom de domaine.</p>
+            </div>
+          </details>
+
+          <details class="faq__item">
+            <summary>Et après la mise en ligne ?</summary>
+            <div class="faq__reponse">
+              <p>Je ne disparais pas. Le site est à vous et je vous explique comment il fonctionne. Pour les changements (horaires, menu, photos…), vous pouvez me les demander ponctuellement, ou choisir la maintenance mensuelle : je m’occupe de tout et vous n’y pensez plus.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 06 · CONTACT ============ -->
+    <section class="section contact" id="contact" aria-labelledby="contact-titre">
+      <div class="conteneur">
+        <header class="section__entete">
+          <p class="section__num mono">06 — Contact</p>
+          <div>
+            <h2 class="section__titre contact__titre" id="contact-titre">Parlons de votre commerce.</h2>
+          </div>
+        </header>
+
+        <div class="contact__grille">
+          <div class="contact__direct">
+            <p class="contact__intro">
+              Un site à créer, à refaire, ou juste une question ? Écrivez-moi quelques lignes :
+              <!-- ✏️ Délai de réponse -->
+              je vous réponds sous 48 heures.
+            </p>
+            <ul class="contact__liens">
+              <li>
+                <span class="mono">E-mail</span>
+                <a href="mailto:ulyssepro.web@outlook.fr">ulyssepro.web@outlook.fr</a>
+              </li>
+              <li>
+                <span class="mono">Instagram</span>
+                <a href="https://www.instagram.com/ulysse_studiooff/" target="_blank" rel="noopener">@ulysse_studiooff<span class="visuellement-cache"> (nouvel onglet)</span></a>
+              </li>
+              <li>
+                <span class="mono">Basé à</span>
+                <span>Lyon, France</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- ===============================================================
+               FORMULAIRE NETLIFY FORMS
+               - data-netlify="true" : Netlify détecte le formulaire au déploiement
+                 (à activer une fois : Netlify > Site > Forms > « Enable form detection »).
+               - Le champ caché « form-name » doit garder la même valeur que name="contact".
+               - « bot-field » est un piège à robots (honeypot) : invisible pour les humains.
+               - Sans JavaScript, l'envoi mène à merci.html. Avec JavaScript, la
+                 confirmation s'affiche sans quitter la page (voir js/main.js).
+               - En local (python -m http.server), l'envoi ne marche pas : c'est normal.
+               =============================================================== -->
+          <form class="formulaire" name="contact" method="POST" action="/merci.html"
+                data-netlify="true" netlify-honeypot="bot-field" data-formulaire>
+            <input type="hidden" name="form-name" value="contact">
+            <p class="visuellement-cache">
+              <label>Ne remplissez pas ce champ si vous êtes humain : <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+            </p>
+
+            <div class="champ">
+              <label for="f-nom">Nom</label>
+              <input id="f-nom" name="nom" type="text" autocomplete="name" required>
+            </div>
+            <div class="champ">
+              <label for="f-email">E-mail</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required>
+            </div>
+            <div class="champ champ--large">
+              <label for="f-commerce">Type de commerce</label>
+              <input id="f-commerce" name="commerce" type="text" required
+                     placeholder="Boulangerie, salon de coiffure, plombier…">
+            </div>
+            <div class="champ champ--large">
+              <label for="f-message">Votre message</label>
+              <textarea id="f-message" name="message" rows="5" required
+                        placeholder="Votre projet en quelques lignes : avez-vous déjà un site ? Une échéance ?"></textarea>
+            </div>
+
+            <div class="formulaire__bas">
+              <p class="formulaire__rgpd">
+                Vos informations servent uniquement à vous répondre. Elles ne sont ni revendues ni utilisées pour de la publicité.
+                <a href="mentions-legales.html#donnees">En savoir plus</a>
+              </p>
+              <button class="btn btn--plein" type="submit">Envoyer <span class="btn__fleche" aria-hidden="true">→</span></button>
+            </div>
+            <p class="formulaire__statut" role="status" aria-live="polite" data-statut></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="pied">
+    <div class="conteneur">
+      <p class="pied__nom" aria-hidden="true">Ulysse Delourme<span class="accent">.</span></p>
+      <div class="pied__bas">
+        <p>Sites web pour commerces &amp; indépendants · Lyon</p>
+        <ul class="pied__liens">
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="https://www.instagram.com/ulysse_studiooff/" target="_blank" rel="noopener">Instagram<span class="visuellement-cache"> (nouvel onglet)</span></a></li>
+          <li><a href="#haut">Haut de page ↑</a></li>
+        </ul>
+        <p>© <span data-annee>2026</span> Ulysse Delourme</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Librairies d'animation (GSAP + ScrollTrigger + SplitText, Lenis pour le scroll fluide).
+       defer : chargées sans bloquer l'affichage de la page. -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/SplitText.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.28/dist/lenis.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
