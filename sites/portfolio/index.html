@@ -510,6 +510,8 @@
                  (à activer une fois : Netlify > Site > Forms > « Enable form detection »).
                - Le champ caché « form-name » doit garder la même valeur que name="contact".
                - « bot-field » est un piège à robots (honeypot) : invisible pour les humains.
+               - Le champ caché « subject » devient l'objet de l'e-mail que Netlify t'envoie.
+                 Le JavaScript y ajoute le type de commerce et le nom (ex. « … : Plombier (Guichard) »).
                - Sans JavaScript, l'envoi mène à merci.html. Avec JavaScript, la
                  confirmation s'affiche sans quitter la page (voir js/main.js).
                - En local (python -m http.server), l'envoi ne marche pas : c'est normal.
@@ -517,6 +519,8 @@
           <form class="formulaire" name="contact" method="POST" action="/merci.html"
                 data-netlify="true" netlify-honeypot="bot-field" data-formulaire>
             <input type="hidden" name="form-name" value="contact">
+            <!-- ✏️ Objet de l'e-mail de notification -->
+            <input type="hidden" name="subject" value="Nouveau contact depuis ton portfolio" data-objet>
             <p class="visuellement-cache">
               <label>Ne remplissez pas ce champ si vous êtes humain : <input name="bot-field" tabindex="-1" autocomplete="off"></label>
             </p>

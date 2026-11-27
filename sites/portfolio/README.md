@@ -78,6 +78,7 @@ Tous les endroits à modifier sont signalés par ✏️ dans le code.
 - **Redéployer** = pousser un commit qui modifie un fichier de `sites/portfolio` (Netlify ignore les commits qui ne touchent pas ce dossier, y compris les commits vides).
 - Vérifier que c'est actif : dans le code source de la page en ligne, la balise `<form>` ne doit plus contenir `data-netlify="true"` (Netlify le retire quand il a pris le formulaire en charge).
 - Pour recevoir les messages par e-mail : https://app.netlify.com/projects/ulysse-delourme/forms?tab=notifications → *Add notification* → e-mail (ulyssepro.web@outlook.fr).
+- Objet de l'e-mail : champ caché `subject` (« Nouveau contact depuis ton portfolio »), complété par le JavaScript avec le type de commerce et le nom, par exemple « … : Plombier (Guichard) ». Pour répondre, clique simplement sur *Répondre* : c'est l'adresse du client qui s'affiche.
 - Anti-spam : champ piège invisible (`bot-field`). Netlify filtre aussi le spam de son côté.
 - **En local, l'envoi échoue** (message « Oups… » avec ton e-mail) : c'est normal, il n'y a pas de Netlify sur ton ordinateur.
 - Offre gratuite Netlify : 100 envois de formulaire par mois, largement suffisant.

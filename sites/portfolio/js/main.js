@@ -41,6 +41,9 @@ if (formulaire) {
   const statut = formulaire.querySelector('[data-statut]');
   const bouton = formulaire.querySelector('button[type="submit"]');
   const texteBouton = bouton.innerHTML;
+  // Texte de base de l'objet, mémorisé une fois (sinon il s'allongerait à chaque envoi)
+  const objet = formulaire.querySelector('[data-objet]');
+  const objetBase = objet ? objet.value : '';
 
   const afficherStatut = (type, html) => {
     statut.className = `formulaire__statut est-${type}`;
@@ -52,6 +55,14 @@ if (formulaire) {
     if (!formulaire.checkValidity()) {
       formulaire.reportValidity();
       return;
+    }
+
+    // Objet de l'e-mail Netlify : on y ajoute le type de commerce et le nom,
+    // pour repérer la demande d'un coup d'œil dans ta boîte de réception.
+    if (objet) {
+      const commerce = formulaire.elements.commerce.value.trim();
+      const nom = formulaire.elements.nom.value.trim();
+      objet.value = `${objetBase} : ${commerce} (${nom})`;
     }
 
     bouton.disabled = true;
