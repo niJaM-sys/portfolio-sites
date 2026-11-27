@@ -74,8 +74,10 @@ Tous les endroits à modifier sont signalés par ✏️ dans le code.
 - [ ] Premiers projets clients 🎉
 
 ## Formulaire (Netlify Forms)
-- Le formulaire `contact` est détecté par Netlify **au déploiement**. Sur un nouveau site, il faut l'activer une fois : *Netlify → ton site → Forms → Enable form detection*, puis redéployer.
-- Pour recevoir les messages par e-mail : *Forms → Form notifications → Add notification → Email notification* (ulyssepro.web@outlook.fr).
+- Le formulaire `contact` est détecté par Netlify **au déploiement**. Il faut l'activer une fois : https://app.netlify.com/projects/ulysse-delourme/forms?tab=detection → *Enable form detection*, puis redéployer.
+- **Redéployer** = pousser un commit qui modifie un fichier de `sites/portfolio` (Netlify ignore les commits qui ne touchent pas ce dossier, y compris les commits vides).
+- Vérifier que c'est actif : dans le code source de la page en ligne, la balise `<form>` ne doit plus contenir `data-netlify="true"` (Netlify le retire quand il a pris le formulaire en charge).
+- Pour recevoir les messages par e-mail : https://app.netlify.com/projects/ulysse-delourme/forms?tab=notifications → *Add notification* → e-mail (ulyssepro.web@outlook.fr).
 - Anti-spam : champ piège invisible (`bot-field`). Netlify filtre aussi le spam de son côté.
 - **En local, l'envoi échoue** (message « Oups… » avec ton e-mail) : c'est normal, il n'y a pas de Netlify sur ton ordinateur.
 - Offre gratuite Netlify : 100 envois de formulaire par mois, largement suffisant.
