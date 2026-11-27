@@ -70,7 +70,7 @@ Tous les endroits à modifier sont signalés par ✏️ dans le code.
 ## À compléter plus tard
 - [x] **Photo** : `assets/img/photo-ulysse.webp` (800×1000) et `photo-ulysse-480.webp` (480×600), recadrées depuis `assets/brut/ULYSSE.jpg` (zone 2240×2800 à partir de x 905, y 430).
 - [ ] **SIRET** (et adresse professionnelle) dans `mentions-legales.html` une fois la micro-entreprise créée.
-- [ ] **Adresse du site** : `ulysse-studio.netlify.app` est provisoire. Si tu en choisis une autre (ou un nom de domaine), fais un rechercher/remplacer dans `index.html`, `mentions-legales.html`, `robots.txt` et `sitemap.xml`.
+- [x] **Adresse du site** : https://ulysse-delourme.netlify.app (en ligne). Si tu passes à un nom de domaine, fais un rechercher/remplacer dans `index.html`, `mentions-legales.html`, `robots.txt` et `sitemap.xml`.
 - [ ] Premiers projets clients 🎉
 
 ## Formulaire (Netlify Forms)
